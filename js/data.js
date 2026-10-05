@@ -207,40 +207,74 @@ window.APP_DATA = {
         sentences: [
           {
             id: "b2-s1",
-            arabic: "مَا هَذِهِ؟ هَذِهِ سَاعَةٌ. لِلسَّاعَةِ اثْنَا عَشَرَ رَقْمًا",
-            translation: "Apa ini? Ini jam dinding. Jam dinding memiliki 12 angka.",
-            audioText: "مَا هَذِهِ؟ هَذِهِ سَاعَةٌ. لِلسَّاعَةِ اثْنَا عَشَرَ رَقْمًا",
+            arabic: "مَا هَذِهِ؟ هَذِهِ سَاعَةٌ. مَاذَا لِلسَّاعَةِ؟ لِلسَّاعَةِ رَقْمٌ. كَمْ رَقْمًا لِلسَّاعَةِ؟ لَهَا اثْنَا عَشَرَ رَقْمًا.",
+            translation: "Apa ini? Ini jam dinding. Apa yang ada pada jam dinding? Jam dinding memiliki angka. Berapa angka pada jam dinding? Jam dinding memiliki 12 angka.",
+            audioText: "مَا هَذِهِ؟ هَذِهِ سَاعَةٌ. مَاذَا لِلسَّاعَةِ؟ لِلسَّاعَةِ رَقْمٌ. كَمْ رَقْمًا لِلسَّاعَةِ؟ لَهَا اثْنَا عَشَرَ رَقْمًا.",
             words: [
               { ar: "مَا", tr: "mâ", id: "apa", type: "Kata Tanya" },
-              { ar: "هَذِهِ", tr: "hâdzihi", id: "ini (muannats)", type: "Isim Isyarah" },
-              { ar: "سَاعَةٌ", tr: "sâ'atun", id: "jam", type: "Isim" },
-              { ar: "لِلسَّاعَةِ", tr: "lis-sâ'ati", id: "bagi jam / jam memiliki", type: "Jar wa Majrur" },
-              { ar: "اثْنَا عَشَرَ", tr: "itsnâ 'asyara", id: "dua belas", type: "Adad 12" },
+              { ar: "هَذِهِ", tr: "hâdzihi", id: "ini (kata tunjuk perempuan)", type: "Isim Isyarah" },
+              { ar: "هَذِهِ", tr: "hâdzihi", id: "ini (kata tunjuk perempuan)", type: "Isim Isyarah" },
+              { ar: "سَاعَةٌ", tr: "sâ'atun", id: "jam dinding", type: "Isim Muannats" },
+              { ar: "مَاذَا", tr: "mâdzâ", id: "apa yang / apakah", type: "Kata Tanya" },
+              { ar: "لِلسَّاعَةِ", tr: "lis-sâ'ati", id: "bagi jam / pada jam", type: "Jar wa Majrur" },
+              { ar: "لِلسَّاعَةِ", tr: "lis-sâ'ati", id: "bagi jam / pada jam", type: "Jar wa Majrur" },
+              { ar: "رَقْمٌ", tr: "raqmun", id: "angka / nomor", type: "Isim" },
+              { ar: "كَمْ", tr: "kam", id: "berapa", type: "Kata Tanya" },
+              { ar: "رَقْمًا", tr: "raqman", id: "angka", type: "Tamyiz (Ma'dud)" },
+              { ar: "لِلسَّاعَةِ", tr: "lis-sâ'ati", id: "bagi jam / pada jam", type: "Jar wa Majrur" },
+              { ar: "لَهَا", tr: "lahâ", id: "ia memiliki", type: "Jar wa Majrur" },
+              { ar: "اثْنَا عَشَرَ", tr: "itsnâ 'asyara", id: "dua belas (12)", type: "Bilangan / Adad" },
               { ar: "رَقْمًا", tr: "raqman", id: "angka", type: "Tamyiz (Ma'dud)" }
             ]
           },
           {
             id: "b2-s2",
-            arabic: "مَا هَذِهِ؟ هَذِهِ مِسْطَرَةٌ. لَهَا أَرْقَامٌ كَثِيْرَةٌ",
-            translation: "Apa ini? Ini penggaris. Penggaris memiliki banyak angka.",
-            audioText: "مَا هَذِهِ؟ هَذِهِ مِسْطَرَةٌ. لَهَا أَرْقَامٌ كَثِيْرَةٌ",
+            arabic: "مَا هَذِهِ؟ هَذِهِ مِسْطَرَةٌ. هَلْ لِلْمِسْطَرَةِ رَقْمٌ كَذَلِكَ؟ نَعَمْ، لَهَا رَقْمٌ كَذَلِكَ. كَمْ رَقْمًا لِلْمِسْطَرَةِ؟ لَهَا أَرْقَامٌ كَثِيْرَةٌ.",
+            translation: "Apa ini? Ini penggaris. Apakah penggaris memiliki angka juga? Ya, ia memiliki angka juga. Berapa angka pada penggaris? Penggaris memiliki banyak angka.",
+            audioText: "مَا هَذِهِ؟ هَذِهِ مِسْطَرَةٌ. هَلْ لِلْمِسْطَرَةِ رَقْمٌ كَذَلِكَ؟ نَعَمْ، لَهَا رَقْمٌ كَذَلِكَ. كَمْ رَقْمًا لِلْمِسْطَرَةِ؟ لَهَا أَرْقَامٌ كَثِيْرَةٌ.",
             words: [
+              { ar: "مَا", tr: "mâ", id: "apa", type: "Kata Tanya" },
+              { ar: "هَذِهِ", tr: "hâdzihi", id: "ini (kata tunjuk perempuan)", type: "Isim Isyarah" },
+              { ar: "هَذِهِ", tr: "hâdzihi", id: "ini (kata tunjuk perempuan)", type: "Isim Isyarah" },
               { ar: "مِسْطَرَةٌ", tr: "mistharatun", id: "penggaris", type: "Isim Muannats" },
+              { ar: "هَلْ", tr: "hal", id: "apakah", type: "Huruf Istifham" },
+              { ar: "لِلْمِسْطَرَةِ", tr: "lil-mistharati", id: "bagi penggaris", type: "Jar wa Majrur" },
+              { ar: "رَقْمٌ", tr: "raqmun", id: "angka", type: "Isim" },
+              { ar: "كَذَلِكَ", tr: "kadzâlika", id: "demikian pula / juga", type: "Keterangan" },
+              { ar: "نَعَمْ", tr: "na'am", id: "ya", type: "Huruf Jawab" },
               { ar: "لَهَا", tr: "lahâ", id: "ia memiliki", type: "Jar wa Majrur" },
-              { ar: "أَرْقَامٌ", tr: "arqâmun", id: "angka-angka", type: "Jama' dari raqm" },
-              { ar: "كَثِيْرَةٌ", tr: "katsîratun", id: "banyak", type: "Kata Sifat" }
+              { ar: "رَقْمٌ", tr: "raqmun", id: "angka", type: "Isim" },
+              { ar: "كَذَلِكَ", tr: "kadzâlika", id: "demikian pula / juga", type: "Keterangan" },
+              { ar: "كَمْ", tr: "kam", id: "berapa", type: "Kata Tanya" },
+              { ar: "رَقْمًا", tr: "raqman", id: "angka", type: "Tamyiz (Ma'dud)" },
+              { ar: "لِلْمِسْطَرَةِ", tr: "lil-mistharati", id: "bagi penggaris", type: "Jar wa Majrur" },
+              { ar: "لَهَا", tr: "lahâ", id: "ia memiliki", type: "Jar wa Majrur" },
+              { ar: "أَرْقَامٌ", tr: "arqâmun", id: "angka-angka", type: "Jama' Taksir" },
+              { ar: "كَثِيْرَةٌ", tr: "katsîratun", id: "banyak", type: "Kata Sifat (Na'at)" }
             ]
           },
           {
             id: "b2-s3",
-            arabic: "مَا هَذَا؟ هَذَا جَوَّالٌ. لَهُ عَشَرَةُ أَرْقَامٍ",
-            translation: "Apa ini? Ini handphone. Handphone memiliki 10 tombol angka.",
-            audioText: "مَا هَذَا؟ هَذَا جَوَّالٌ. لَهُ عَشَرَةُ أَرْقَامٍ",
+            arabic: "مَا هَذَا؟ هَذَا جَوَّالٌ. هَلْ لِلْجَوَّالِ رَقْمٌ؟ نَعَمْ، لَهُ رَقْمٌ. كَمْ رَقْمًا لِلْجَوَّالِ؟ لَهُ عَشَرَةُ أَرْقَامٍ.",
+            translation: "Apa ini? Ini handphone. Apakah handphone memiliki angka? Ya, ia memiliki angka. Berapa angka pada handphone? Handphone memiliki 10 angka.",
+            audioText: "مَا هَذَا؟ هَذَا جَوَّالٌ. هَلْ لِلْجَوَّالِ رَقْمٌ؟ نَعَمْ، لَهُ رَقْمٌ. كَمْ رَقْمًا لِلْجَوَّالِ؟ لَهُ عَشَرَةُ أَرْقَامٍ.",
             words: [
-              { ar: "هَذَا", tr: "hâdzâ", id: "ini (mudzakkar)", type: "Isim Isyarah" },
-              { ar: "جَوَّالٌ", tr: "jawwâlun", id: "handphone", type: "Isim Mudzakkar" },
+              { ar: "مَا", tr: "mâ", id: "apa", type: "Kata Tanya" },
+              { ar: "هَذَا", tr: "hâdzâ", id: "ini (kata tunjuk laki-laki)", type: "Isim Isyarah Mudzakkar" },
+              { ar: "هَذَا", tr: "hâdzâ", id: "ini (kata tunjuk laki-laki)", type: "Isim Isyarah Mudzakkar" },
+              { ar: "جَوَّالٌ", tr: "jawwâlun", id: "handphone / HP", type: "Isim Mudzakkar" },
+              { ar: "هَلْ", tr: "hal", id: "apakah", type: "Huruf Istifham" },
+              { ar: "لِلْجَوَّالِ", tr: "lil-jawwâli", id: "bagi handphone", type: "Jar wa Majrur" },
+              { ar: "رَقْمٌ", tr: "raqmun", id: "angka / nomor", type: "Isim" },
+              { ar: "نَعَمْ", tr: "na'am", id: "ya", type: "Huruf Jawab" },
               { ar: "لَهُ", tr: "lahu", id: "ia memiliki", type: "Jar wa Majrur" },
-              { ar: "عَشَرَةُ أَرْقَامٍ", tr: "‘asyaratu arqâmin", id: "sepuluh angka", type: "Adad Ma'dud" }
+              { ar: "رَقْمٌ", tr: "raqmun", id: "angka / nomor", type: "Isim" },
+              { ar: "كَمْ", tr: "kam", id: "berapa", type: "Kata Tanya" },
+              { ar: "رَقْمًا", tr: "raqman", id: "angka", type: "Tamyiz (Ma'dud)" },
+              { ar: "لِلْجَوَّالِ", tr: "lil-jawwâli", id: "bagi handphone", type: "Jar wa Majrur" },
+              { ar: "لَهُ", tr: "lahu", id: "ia memiliki", type: "Jar wa Majrur" },
+              { ar: "عَشَرَةُ", tr: "'asyaratu", id: "sepuluh (10)", type: "Bilangan / Adad" },
+              { ar: "أَرْقَامٍ", tr: "arqâmin", id: "angka-angka", type: "Ma'dud Jamak Majrur" }
             ]
           }
         ]
