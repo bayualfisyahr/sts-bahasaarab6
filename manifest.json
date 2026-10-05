@@ -1,0 +1,18 @@
+{
+  "name": "Al Maahyrah - Kelas 6 Zaid bin Tsabit",
+  "short_name": "Al Maahyrah",
+  "description": "Aplikasi Web Belajar Bahasa Arab Interaktif Kelas 6 Zaid bin Tsabit - SDIT Al Maahyrah",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F8FAFC",
+  "theme_color": "#0D9488",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

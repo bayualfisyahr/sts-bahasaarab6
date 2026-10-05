@@ -1,0 +1,9 @@
+# Raw files & PDF extraction
+STS_Sirah_6.pdf
+page_*.png
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

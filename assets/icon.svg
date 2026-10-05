@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D9488;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D97706;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  
+  <!-- Background Rounded Tile -->
+  <rect x="32" y="32" width="448" height="448" rx="100" fill="url(#grad)" filter="url(#shadow)" />
+  
+  <!-- Golden Border Glow -->
+  <rect x="44" y="44" width="424" height="424" rx="88" fill="none" stroke="#FDE68A" stroke-width="6" opacity="0.6" />
+  
+  <!-- Book Icon & Arabic Calligraphy Accent -->
+  <g fill="#FFFFFF" transform="translate(100, 110)">
+    <!-- Book Left Page -->
+    <path d="M 156 50 C 90 20, 20 40, 0 60 L 0 250 C 30 230, 90 210, 156 230 Z" fill="#F8FAFC" opacity="0.95" />
+    <!-- Book Right Page -->
+    <path d="M 156 50 C 222 20, 292 40, 312 60 L 312 250 C 282 230, 222 210, 156 230 Z" fill="#FFFFFF" />
+    <!-- Spine Line -->
+    <line x1="156" y1="50" x2="156" y2="240" stroke="#0D9488" stroke-width="8" stroke-linecap="round" />
+  </g>
+
+  <!-- Arabic Letter Dhad / Nun Symbol in Gold -->
+  <text x="256" y="235" font-family="'Amiri', serif" font-size="96" font-weight="bold" fill="#0D9488" text-anchor="middle" dominant-baseline="middle">ع</text>
+  
+  <!-- Stars -->
+  <text x="256" y="415" font-size="36" fill="#FDE68A" text-anchor="middle">★ ★ ★</text>
+</svg>

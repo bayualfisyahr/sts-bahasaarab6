@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Al Maahyrah • Kelas 6 Zaid bin Tsabit</title>
+  
+  <!-- SEO & Social Meta Tags -->
+  <meta name="description" content="Aplikasi web interaktif pembelajaran Bahasa Arab untuk siswa Kelas 6 Zaid bin Tsabit - SDIT Al Maahyrah. Dilengkapi audio suara Arab, terjemah perkata, latihan menyusun kalimat, dan permainan edukatif." />
+  <meta name="keywords" content="Al Maahyrah, Bahasa Arab, Kelas 6 Zaid bin Tsabit, Belajar Bahasa Arab, Terjemah Perkata, Audio Arab" />
+  <meta name="theme-color" content="#0D9488" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Al Maahyrah" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./assets/logo.png" />
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="./manifest.json" />
+
+  <!-- Google Fonts: Amiri & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="./css/style.css?v=6" />
+</head>
+<body>
+
+  <!-- Main Application Wrapper -->
+  <div class="app-container">
+
+    <!-- Header App Bar -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="brand-wrapper">
+          <div class="brand-logo-wrap">
+            <img src="./assets/logo.png" alt="Logo SDIT Al Maahyrah" class="brand-logo-img" />
+          </div>
+          <div class="brand-text-col">
+            <h1 class="brand-title">Al Maahyrah</h1>
+            <span class="brand-subtitle">Kelas 6 Zaid bin Tsabit</span>
+          </div>
+        </div>
+        <div class="star-counter-pill" title="Total Bintang Latihan">
+          ⭐ <span id="header-total-stars">0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN VIEW 1: PELAJARAN (MATERI & LATIHAN PER BAB) -->
+    <main class="tab-view" id="view-lessons">
+      <!-- 1A: Daftar Semua Bab -->
+      <div id="lessons-list-view">
+        <div class="lessons-hub-header">
+          <h2 class="hub-title">Daftar Pelajaran</h2>
+          <p class="hub-subtitle">Pilih materi yang ingin kamu pelajari hari ini:</p>
+        </div>
+        <div class="lessons-cards-list" id="lessons-cards-container">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+
+      <!-- 1B: Halaman Detail Bab Terpilih -->
+      <div id="chapter-detail-view" class="hidden">
+        <!-- Navigasi Kembali -->
+        <div class="chapter-nav-header">
+          <button class="btn-back-lessons" onclick="window.appRouter.showLessonsList()">
+            ← Kembali ke Daftar Pelajaran
+          </button>
+        </div>
+
+        <!-- Banner Info Bab -->
+        <div id="chapter-header-box"></div>
+
+        <!-- Segmented Control: Bacaan vs Latihan (Bukan sliding tab) -->
+        <div class="chapter-segmented-control">
+          <button class="seg-btn active" id="seg-btn-reader" onclick="window.appRouter.switchChapterSection('reader')">
+            📖 Bacaan & Naskah
+          </button>
+          <button class="seg-btn" id="seg-btn-exercises" onclick="window.appRouter.switchChapterSection('exercises')">
+            ✍️ Latihan Soal
+          </button>
+        </div>
+
+        <!-- Konten Bacaan & Naskah -->
+        <div id="chapter-reader-section">
+          <div id="reader-container">
+            <!-- Rendered by reader.js -->
+          </div>
+        </div>
+
+        <!-- Konten Latihan Soal -->
+        <div id="chapter-exercise-section" class="hidden">
+          <div id="exercise-container">
+            <!-- Rendered by exercises.js -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- MAIN VIEW 2: ARENA PERMAINAN (GAMES) -->
+    <section class="tab-view hidden" id="view-games">
+      <div id="games-container">
+        <!-- Rendered by games.js -->
+      </div>
+    </section>
+
+    <!-- MAIN VIEW 3: KAMUS KOSAKATA (MUFRODAT) -->
+    <section class="tab-view hidden" id="view-dictionary">
+      <div id="dictionary-container">
+        <!-- Rendered by app.js -->
+      </div>
+    </section>
+
+  </div>
+
+  <!-- MODAL BOTTOM SHEET: TERJEMAH PERKATA -->
+  <div class="modal-backdrop hidden" id="word-modal-backdrop">
+    <div class="word-modal-card" id="word-modal-card">
+      <div class="modal-header">
+        <span class="modal-title-tag" id="modal-word-type">Kosakata</span>
+        <button class="btn-close-modal" id="close-word-modal" aria-label="Tutup">✕</button>
+      </div>
+
+      <div class="modal-ar-display">
+        <div class="ar-big-text font-arabic" id="modal-word-arabic" dir="rtl">مَدْرَسَتِي</div>
+        <div class="latin-translit" id="modal-word-translit">madrasatî</div>
+      </div>
+
+      <div class="modal-details-grid">
+        <div class="detail-col">
+          <div class="detail-label">Arti Perkata</div>
+          <div class="detail-val" id="modal-word-meaning">Sekolahku</div>
+        </div>
+        <div class="detail-col">
+          <div class="detail-label">Bahasa</div>
+          <div class="detail-val">Arab Fusha</div>
+        </div>
+      </div>
+
+      <button class="btn-modal-speak" id="modal-speak-btn">
+        <span class="speak-icon">🔊</span> Dengarkan Pelafalan Kata
+      </button>
+    </div>
+  </div>
+
+  <!-- FIXED BOTTOM NAVIGATION BAR (3 MENU UTAMA) -->
+  <nav class="bottom-nav-bar" aria-label="Navigasi Bawah">
+    <div class="bottom-nav-content">
+      <button class="nav-item active" data-tab="lessons" id="nav-tab-lessons">
+        <span class="nav-icon">📖</span>
+        <span class="nav-label">Pelajaran</span>
+      </button>
+      <button class="nav-item" data-tab="games" id="nav-tab-games">
+        <span class="nav-icon">🎮</span>
+        <span class="nav-label">Permainan</span>
+      </button>
+      <button class="nav-item" data-tab="dictionary" id="nav-tab-dictionary">
+        <span class="nav-icon">📚</span>
+        <span class="nav-label">Kosakata</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Application Scripts -->
+  <script src="./js/data.js?v=6"></script>
+  <script src="./js/audio.js?v=6"></script>
+  <script src="./js/reader.js?v=6"></script>
+  <script src="./js/exercises.js?v=6"></script>
+  <script src="./js/games.js?v=6"></script>
+  <script src="./js/app.js?v=6"></script>
+
+  <!-- PWA Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => {
+          console.log('SW registration skipped in local context', err);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
