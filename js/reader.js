@@ -322,13 +322,25 @@ class StoryReader {
     const modal = document.getElementById("word-modal-backdrop");
     const arEl = document.getElementById("modal-word-arabic");
     const trEl = document.getElementById("modal-word-translit");
-    const idEl = document.getElementById("modal-word-meaning");
     const typeEl = document.getElementById("modal-word-type");
 
     if (arEl) arEl.innerText = word.ar;
     if (trEl) trEl.innerText = word.tr || "";
-    if (idEl) idEl.innerText = word.id || "";
     if (typeEl) typeEl.innerText = word.type || "Kosakata";
+
+    // Pastikan modal hanya menampilkan div terjemah perkata saja
+    const detailsGrid = document.querySelector(".modal-details-grid");
+    if (detailsGrid) {
+      detailsGrid.innerHTML = `
+        <div class="detail-col">
+          <div class="detail-label">Arti Perkata</div>
+          <div class="detail-val" id="modal-word-meaning">${word.id || ""}</div>
+        </div>
+      `;
+    } else {
+      const idEl = document.getElementById("modal-word-meaning");
+      if (idEl) idEl.innerText = word.id || "";
+    }
 
     if (modal) {
       modal.classList.remove("hidden");

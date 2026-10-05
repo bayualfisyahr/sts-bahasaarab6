@@ -1,4 +1,4 @@
-const CACHE_NAME = 'almaahirah-v7';
+const CACHE_NAME = 'almaahirah-v8';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

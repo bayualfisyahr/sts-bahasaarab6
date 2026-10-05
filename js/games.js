@@ -121,12 +121,16 @@ class MiniGamesHub {
 
   renderRushBoard() {
     const list = window.APP_DATA.gamesData.scrambleWords;
+    if (!list || list.length === 0) return;
     const current = list[this.rushIndex % list.length];
-    this.rushPool = [...current.tokens].sort(() => Math.random() - 0.5);
+    const sourceTokens = current.tokens || current.letters || (current.target ? current.target.split(" ") : []);
+    this.rushPool = [...sourceTokens].sort(() => Math.random() - 0.5);
     this.rushSelected = [];
 
     const container = document.getElementById("games-container");
     if (!container) return;
+
+    const questionText = current.question || `Susun Kalimat: "${current.meaning || current.target}"`;
 
     container.innerHTML = `
       <div class="game-active-wrapper glass-card">
@@ -137,7 +141,7 @@ class MiniGamesHub {
         </div>
 
         <div class="rush-prompt-box">
-          <span class="game-sub-title">${current.question}</span>
+          <span class="game-sub-title">${questionText}</span>
           <div class="rush-dropzone font-arabic" id="rush-answer-box" dir="rtl">
             <span class="placeholder-text">Ketuk kata Arab untuk menyusun kalimat</span>
           </div>
@@ -180,8 +184,10 @@ class MiniGamesHub {
   resetRushCurrent() {
     window.audioEngine.playTap();
     const list = window.APP_DATA.gamesData.scrambleWords;
+    if (!list || list.length === 0) return;
     const current = list[this.rushIndex % list.length];
-    this.rushPool = [...current.tokens];
+    const sourceTokens = current.tokens || current.letters || (current.target ? current.target.split(" ") : []);
+    this.rushPool = [...sourceTokens];
     this.rushSelected = [];
     this.updateRushUI();
   }
@@ -210,11 +216,14 @@ class MiniGamesHub {
 
   checkRushAnswer() {
     const list = window.APP_DATA.gamesData.scrambleWords;
+    if (!list || list.length === 0) return;
     const current = list[this.rushIndex % list.length];
     const userAns = this.rushSelected.join(" ").trim();
-    const correctAns = current.correct.join(" ").trim();
+    const correctAns = Array.isArray(current.correct) 
+      ? current.correct.join(" ").trim() 
+      : (Array.isArray(current.tokens) ? current.tokens.join(" ").trim() : (current.target || "").trim());
 
-    if (userAns === correctAns) {
+    if (userAns === correctAns || (current.target && userAns === current.target.trim())) {
       window.audioEngine.playCorrect();
       this.score += 50;
       this.timeLeft += 5; // Bonus waktu
@@ -444,7 +453,7 @@ class MiniGamesHub {
 
   renderLaisaQuestion() {
     const questions = window.APP_DATA.gamesData.laisaQuiz;
-    if (this.laisaIndex >= questions.length) {
+    if (!questions || this.laisaIndex >= questions.length) {
       this.endLaisaQuiz();
       return;
     }
@@ -453,6 +462,8 @@ class MiniGamesHub {
     const q = questions[this.laisaIndex];
     const container = document.getElementById("games-container");
     if (!container) return;
+
+    const dhomirTag = q.dhomir || q.subject || "";
 
     container.innerHTML = `
       <div class="game-active-wrapper glass-card">
@@ -463,11 +474,11 @@ class MiniGamesHub {
         </div>
 
         <div class="quiz-case-box">
-          <div class="quiz-dhomir-tag">Dhomir: <strong>${q.dhomir}</strong></div>
+          ${dhomirTag ? `<div class="quiz-dhomir-tag">Subjek / Dhomir: <strong>${dhomirTag}</strong></div>` : ""}
           <div class="case-sentence font-arabic" dir="rtl">${q.sentence}</div>
         </div>
 
-        <p class="quiz-instruction">Pilih bentuk kata yang tepat untuk melengkapi kalimat:</p>
+        <p class="quiz-instruction">Pilih bentuk kata penegasan negasi (لَيْسَ) yang tepat:</p>
 
         <div class="quiz-options-grid font-arabic" dir="rtl" id="laisa-options-container">
           ${q.options.map((opt) => `
@@ -488,7 +499,8 @@ class MiniGamesHub {
 
     const questions = window.APP_DATA.gamesData.laisaQuiz;
     const q = questions[this.laisaIndex];
-    const isCorrect = (selectedOption === q.target);
+    const target = q.target || (q.options && q.correctIndex !== undefined ? q.options[q.correctIndex] : "");
+    const isCorrect = (selectedOption.trim() === target.trim());
     const feedbackBox = document.getElementById("laisa-feedback-container");
 
     if (isCorrect) {
@@ -496,7 +508,7 @@ class MiniGamesHub {
       this.isLaisaAnswered = true;
       document.querySelectorAll(".quiz-option-btn").forEach(btn => {
         btn.disabled = true;
-        if (btn.innerText.trim() === selectedOption) {
+        if (btn.innerText.trim() === selectedOption.trim()) {
           btn.classList.add("btn-correct");
         }
       });
@@ -509,20 +521,23 @@ class MiniGamesHub {
       if (feedbackBox) {
         feedbackBox.classList.remove("hidden");
         feedbackBox.className = "feedback-container feedback-success animate-pop";
+        const explanation = q.explanation || q.hint || "Bentuk kata yang kamu pilih tepat sesuai kaidah nahwu.";
         feedbackBox.innerHTML = `
           <div class="feedback-badge">Benar! (+25 Poin)</div>
-          <p class="feedback-msg">Bentuk kata yang kamu pilih tepat.</p>
-          ${q.explanation ? `<div class="feedback-exp">💡 <strong>Penjelasan:</strong> ${q.explanation}</div>` : ""}
+          <p class="feedback-msg">Jawabanmu tepat.</p>
+          <div class="feedback-exp">💡 <strong>Penjelasan:</strong> ${explanation}</div>
           <button class="btn-primary btn-next-ex" onclick="window.miniGames.nextLaisaQuestion()">
             Lanjut ke Soal Berikutnya ➔
           </button>
         `;
-        feedbackBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        if (typeof feedbackBox.scrollIntoView === "function") {
+          feedbackBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
       }
     } else {
-      // Jika salah, HANYA nonaktifkan & tandai merah tombol yang dipilih
+      // Jika salah, HANYA nonaktifkan & tandai merah tombol yang dipilih, jangan beritahu jawaban yang benar
       document.querySelectorAll(".quiz-option-btn").forEach(btn => {
-        if (btn.innerText.trim() === selectedOption) {
+        if (btn.innerText.trim() === selectedOption.trim()) {
           btn.classList.add("btn-wrong");
           btn.disabled = true;
         }
@@ -533,12 +548,15 @@ class MiniGamesHub {
       if (feedbackBox) {
         feedbackBox.classList.remove("hidden");
         feedbackBox.className = "feedback-container feedback-error animate-shake";
+        const clue = q.clue || q.hint || "Perhatikan kata ganti (dhomir) subjek dalam kalimat.";
         feedbackBox.innerHTML = `
           <div class="feedback-badge">Kurang Tepat</div>
-          <p class="feedback-msg">Pilihanmu belum tepat. Silakan coba pilih opsi lain!</p>
-          ${q.clue ? `<div class="feedback-exp">💡 <strong>Petunjuk:</strong> ${q.clue}</div>` : ""}
+          <p class="feedback-msg">Pilihanmu belum tepat. Silakan coba opsi lain!</p>
+          <div class="feedback-exp">💡 <strong>Petunjuk:</strong> ${clue}</div>
         `;
-        feedbackBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        if (typeof feedbackBox.scrollIntoView === "function") {
+          feedbackBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
       }
     }
   }
