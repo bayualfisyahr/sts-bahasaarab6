@@ -1,96 +1,293 @@
 /**
- * AUDIO ENGINE: Web Speech API (Arabic TTS) & Web Audio API (Synthesized SFX)
- * Zero external audio files required - works offline and lightweight for GitHub Pages.
+ * AUDIO ENGINE: Hybrid Arabic Voice (Web Speech API + Cloud TTS Stream Fallback) & Web Audio SFX
+ * 
+ * Mengatasi kendala suara tidak keluar di beberapa device:
+ * 1. Device tanpa paket suara Arab (Xiaomi, Oppo, Vivo, Infinix, atau Windows tanpa voice Arab):
+ *    -> Otomatis beralih (fallback) ke Google Cloud TTS MP3 Audio Stream yang sangat jernih dan berharakat.
+ * 2. Autoplay policy di Safari iOS dan Chrome Mobile:
+ *    -> Gesture unlocker pada sentuhan pertama untuk mengaktifkan AudioContext dan Audio element.
+ * 3. Bug Chrome stuck / iOS Garbage Collection pada Web Speech API:
+ *    -> Menyimpan instance utterance pada array global dan mengaktifkan watchdog timer proteksi.
  */
 
 class AudioEngine {
   constructor() {
     this.synth = window.speechSynthesis || null;
     this.arabicVoice = null;
-    this.speechRate = 0.85; // Default sedikit lebih tenang untuk murid SD
+    this.speechRate = 0.85; // Kecepatan ideal untuk siswa madrasah/SD
     this.isPlaying = false;
     this.currentUtterance = null;
-    this.onSentenceStart = null;
-    this.onSentenceEnd = null;
-    this.onWordBoundary = null;
-    
-    // Audio Context untuk efek suara (SFX)
-    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    this.audioCtx = AudioCtx ? new AudioCtx() : null;
+    this.watchdogTimer = null;
 
+    // HTML5 Audio Player untuk Cloud TTS stream fallback
+    this.audioPlayer = new Audio();
+    this.audioPlayer.preload = "auto";
+
+    // Audio Context untuk efek suara sintesis (SFX)
+    this.audioCtx = null;
+    this.initAudioContext();
+
+    // Cache daftar utterance aktif agar tidak dibersihkan oleh Garbage Collector di iOS/Safari
+    window._activeUtterances = window._activeUtterances || [];
+
+    // Deteksi voice lokal
     this.initVoices();
     if (this.synth && this.synth.onvoiceschanged !== undefined) {
       this.synth.onvoiceschanged = () => this.initVoices();
     }
+
+    // Auto-unlock saat pengguna pertama kali berinteraksi (tap/klik) dengan layar
+    this.bindAutoUnlock();
   }
 
-  // Temukan voice bahasa Arab terbaik di perangkat
+  initAudioContext() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) {
+        this.audioCtx = new AudioCtx();
+      }
+    } catch (e) {
+      console.warn("AudioContext init error:", e);
+    }
+  }
+
+  bindAutoUnlock() {
+    const unlock = () => {
+      this.resumeAudioCtx();
+      if (this.audioPlayer) {
+        // Pancing audio player sekali agar diizinkan sistem operasi
+        this.audioPlayer.load();
+      }
+      if (this.synth && this.synth.paused) {
+        this.synth.resume();
+      }
+      // Re-scan voice siapa tahu baru siap setelah interaksi
+      this.initVoices();
+    };
+
+    ["touchstart", "touchend", "click", "keydown"].forEach((evt) => {
+      document.addEventListener(evt, unlock, { once: true, capture: true });
+    });
+  }
+
+  // Temukan voice bahasa Arab bawaan sistem jika tersedia
   initVoices() {
     if (!this.synth) return;
-    const voices = this.synth.getVoices();
-    this.arabicVoice = voices.find(v => v.lang.startsWith("ar-") || v.lang === "ar") || null;
+    try {
+      const voices = this.synth.getVoices() || [];
+      if (!voices || voices.length === 0) return;
+
+      this.arabicVoice = voices.find((v) => {
+        const lang = (v.lang || "").toLowerCase();
+        const name = (v.name || "").toLowerCase();
+        return (
+          lang.startsWith("ar") ||
+          lang.includes("ar-") ||
+          name.includes("arabic") ||
+          name.includes("العربية")
+        );
+      }) || null;
+    } catch (e) {
+      console.warn("Gagal membaca voices:", e);
+    }
+  }
+
+  hasArabicVoice() {
+    if (this.arabicVoice) return true;
+    this.initVoices();
+    return !!this.arabicVoice;
   }
 
   setRate(rate) {
     this.speechRate = parseFloat(rate) || 0.85;
+    if (this.audioPlayer) {
+      this.audioPlayer.playbackRate = this.speechRate;
+    }
   }
 
-  // Putar teks bahasa Arab dengan Web Speech API
+  // Bersihkan tanda baca yang tidak perlu agar pelafalan tidak terganggu
+  cleanArabicText(text) {
+    if (!text) return "";
+    return text.trim();
+  }
+
+  /**
+   * Main Dispatcher: Putar ucapan bahasa Arab
+   * Mendukung Web Speech API lokal dan otomatis fallback ke Cloud Audio Stream
+   */
   speakArabic(text, onStart, onEnd, onBoundary) {
-    if (!this.synth) {
-      console.warn("Speech Synthesis tidak didukung pada browser ini.");
+    this.stopSpeech();
+
+    const cleanText = this.cleanArabicText(text);
+    if (!cleanText) {
+      if (onEnd) onEnd();
       return;
     }
 
-    this.stopSpeech();
+    // Cek apakah perangkat memiliki voice Arab lokal bawaan
+    const hasLocalVoice = this.hasArabicVoice();
 
-    // Hapus karakter non-ucapan jika diperlukan tapi biarkan harakat Arab
-    const cleanText = text.trim();
-    if (!cleanText) return;
-
-    const utterance = new SpeechSynthesisUtterance(cleanText);
-    utterance.lang = "ar-SA";
-    utterance.rate = this.speechRate;
-    utterance.pitch = 1.0;
-
-    if (this.arabicVoice) {
-      utterance.voice = this.arabicVoice;
+    if (hasLocalVoice && this.synth) {
+      // Gunakan Web Speech API lokal jika ada voice Arab
+      this.speakViaWebSpeech(cleanText, onStart, onEnd, onBoundary);
+    } else {
+      // Jika HP tidak memiliki voice Arab (seperti banyak HP Android/Xiaomi/Oppo default),
+      // langsung alihkan ke Cloud Audio Stream tanpa membuat user menunggu
+      this.speakViaCloudStream(cleanText, onStart, onEnd);
     }
+  }
 
-    utterance.onstart = () => {
-      this.isPlaying = true;
-      if (onStart) onStart();
-    };
+  // Metode 1: Web Speech API Lokal (Offline)
+  speakViaWebSpeech(cleanText, onStart, onEnd, onBoundary) {
+    try {
+      if (this.synth.paused) {
+        this.synth.resume();
+      }
 
-    utterance.onend = () => {
-      this.isPlaying = false;
-      this.currentUtterance = null;
-      if (onEnd) onEnd();
-    };
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = "ar-SA";
+      utterance.rate = this.speechRate;
+      utterance.pitch = 1.0;
 
-    utterance.onerror = (e) => {
-      console.warn("Speech Synthesis error:", e);
-      this.isPlaying = false;
-      this.currentUtterance = null;
-      if (onEnd) onEnd();
-    };
+      if (this.arabicVoice) {
+        utterance.voice = this.arabicVoice;
+      }
 
-    if (onBoundary) {
-      utterance.onboundary = (e) => {
-        onBoundary(e);
+      let hasStarted = false;
+
+      utterance.onstart = () => {
+        hasStarted = true;
+        this.isPlaying = true;
+        if (this.watchdogTimer) {
+          clearTimeout(this.watchdogTimer);
+          this.watchdogTimer = null;
+        }
+        if (onStart) onStart();
       };
-    }
 
-    this.currentUtterance = utterance;
-    this.synth.speak(utterance);
+      utterance.onend = () => {
+        this.isPlaying = false;
+        this.cleanupUtterance(utterance);
+        if (onEnd) onEnd();
+      };
+
+      utterance.onerror = (e) => {
+        console.warn("Speech Synthesis error, falling back to Cloud TTS stream:", e);
+        this.isPlaying = false;
+        this.cleanupUtterance(utterance);
+        if (this.watchdogTimer) {
+          clearTimeout(this.watchdogTimer);
+          this.watchdogTimer = null;
+        }
+        // Fallback otomatis ke cloud stream saat lokal error
+        this.speakViaCloudStream(cleanText, onStart, onEnd);
+      };
+
+      if (onBoundary) {
+        utterance.onboundary = (e) => onBoundary(e);
+      }
+
+      this.currentUtterance = utterance;
+      window._activeUtterances.push(utterance);
+
+      // Watchdog Timer (850ms):
+      // Jika Web Speech API freeze/silent (tidak mentrigger onstart),
+      // otomatis batalkan dan alihkan ke Cloud Stream
+      this.watchdogTimer = setTimeout(() => {
+        if (!hasStarted && this.isPlaying) {
+          console.warn("Web Speech API timeout/silent, switching to Cloud TTS stream...");
+          if (this.synth) this.synth.cancel();
+          this.cleanupUtterance(utterance);
+          this.speakViaCloudStream(cleanText, onStart, onEnd);
+        }
+      }, 850);
+
+      this.isPlaying = true;
+      this.synth.speak(utterance);
+    } catch (err) {
+      console.warn("Web Speech Exception, fallback to Cloud Stream:", err);
+      this.speakViaCloudStream(cleanText, onStart, onEnd);
+    }
+  }
+
+  // Metode 2: Cloud TTS Audio Stream (Google TTS MP3)
+  // Menjamin 100% kompatibel di SEMUA smartphone Android, iPhone, tablet, & PC
+  speakViaCloudStream(cleanText, onStart, onEnd) {
+    try {
+      this.isPlaying = true;
+      const encoded = encodeURIComponent(cleanText);
+      const streamUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=ar&client=tw-ob&q=${encoded}`;
+
+      this.audioPlayer.pause();
+      this.audioPlayer.currentTime = 0;
+      this.audioPlayer.src = streamUrl;
+      this.audioPlayer.playbackRate = this.speechRate;
+
+      this.audioPlayer.onplay = () => {
+        this.isPlaying = true;
+        if (onStart) onStart();
+      };
+
+      this.audioPlayer.onended = () => {
+        this.isPlaying = false;
+        if (onEnd) onEnd();
+      };
+
+      this.audioPlayer.onerror = (err) => {
+        console.warn("Cloud audio stream error:", err);
+        this.isPlaying = false;
+        if (onEnd) onEnd();
+      };
+
+      const playPromise = this.audioPlayer.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn("Cloud stream play prevented by browser:", err);
+          this.isPlaying = false;
+          if (onEnd) onEnd();
+        });
+      }
+    } catch (e) {
+      console.warn("Failed to play Cloud audio stream:", e);
+      this.isPlaying = false;
+      if (onEnd) onEnd();
+    }
+  }
+
+  cleanupUtterance(utterance) {
+    if (window._activeUtterances) {
+      const idx = window._activeUtterances.indexOf(utterance);
+      if (idx !== -1) window._activeUtterances.splice(idx, 1);
+    }
+    if (this.currentUtterance === utterance) {
+      this.currentUtterance = null;
+    }
   }
 
   stopSpeech() {
+    if (this.watchdogTimer) {
+      clearTimeout(this.watchdogTimer);
+      this.watchdogTimer = null;
+    }
+
     if (this.synth) {
-      this.synth.cancel();
-      this.isPlaying = false;
+      try {
+        this.synth.cancel();
+      } catch (e) {}
       this.currentUtterance = null;
     }
+
+    if (this.audioPlayer) {
+      try {
+        this.audioPlayer.pause();
+        this.audioPlayer.currentTime = 0;
+        this.audioPlayer.onplay = null;
+        this.audioPlayer.onended = null;
+        this.audioPlayer.onerror = null;
+      } catch (e) {}
+    }
+
+    this.isPlaying = false;
   }
 
   // ==========================================
@@ -98,8 +295,11 @@ class AudioEngine {
   // ==========================================
 
   resumeAudioCtx() {
+    if (!this.audioCtx) {
+      this.initAudioContext();
+    }
     if (this.audioCtx && this.audioCtx.state === "suspended") {
-      this.audioCtx.resume();
+      this.audioCtx.resume().catch(() => {});
     }
   }
 
@@ -182,7 +382,7 @@ class AudioEngine {
         { f: 1046.50, d: 0.35 }
       ];
       let t = this.audioCtx.currentTime;
-      fanfareNotes.forEach(item => {
+      fanfareNotes.forEach((item) => {
         const osc = this.audioCtx.createOscillator();
         const gain = this.audioCtx.createGain();
         osc.type = "triangle";

@@ -515,68 +515,225 @@ window.APP_DATA = {
   // Data Permainan Edukatif Bahasa Arab
   gamesData: {
     scrambleWords: [
+      // === BAB 1: مَدْرَسَتِيْ (Sekolahku) ===
       {
+        chapter: 1,
         question: "Susun Kalimat: \"Ini sekolahku di desa\"",
-        tokens: ["هَذِهِ", "مَدْرَسَتِي", "فِي", "الْقَرْيَةِ"],
+        tokens: ["الْقَرْيَةِ", "فِي", "مَدْرَسَتِي", "هَذِهِ"],
         correct: ["هَذِهِ", "مَدْرَسَتِي", "فِي", "الْقَرْيَةِ"],
         target: "هَذِهِ مَدْرَسَتِي فِي الْقَرْيَةِ",
         meaning: "Ini sekolahku di desa",
         hint: "Pelajaran 1: Lingkungan sekolah"
       },
       {
+        chapter: 1,
         question: "Susun Kalimat: \"Sekolahku besar dan luas\"",
-        tokens: ["مَدْرَسَتِي", "كَبِيرَةٌ", "وَوَاسِعَةٌ"],
+        tokens: ["وَوَاسِعَةٌ", "كَبِيرَةٌ", "مَدْرَسَتِي"],
         correct: ["مَدْرَسَتِي", "كَبِيرَةٌ", "وَوَاسِعَةٌ"],
         target: "مَدْرَسَتِي كَبِيرَةٌ وَوَاسِعَةٌ",
         meaning: "Sekolahku besar dan luas",
         hint: "Pelajaran 1: Sifat sekolah"
       },
       {
-        question: "Susun Kalimat: \"Di dalam kelasku ada 10 meja\"",
-        tokens: ["فِي", "فَصْلِي", "عَشَرَةُ", "مَكَاتِبَ"],
-        correct: ["فِي", "فَصْلِي", "عَشَرَةُ", "مَكَاتِبَ"],
-        target: "فِي فَصْلِي عَشَرَةُ مَكَاتِبَ",
-        meaning: "Di dalam kelasku ada 10 meja",
+        chapter: 1,
+        question: "Susun Kalimat: \"Di dalamnya ada banyak murid\"",
+        tokens: ["كَثِيْرُوْنَ", "تَلَامِيْذُ", "فِيْهَا"],
+        correct: ["فِيْهَا", "تَلَامِيْذُ", "كَثِيْرُوْنَ"],
+        target: "فِيْهَا تَلَامِيْذُ كَثِيْرُوْنَ",
+        meaning: "Di dalamnya ada banyak murid",
+        hint: "Pelajaran 1: Murid sekolah"
+      },
+      {
+        chapter: 1,
+        question: "Susun Kalimat: \"Di sekolahku ada enam kelas\"",
+        tokens: ["فُصُوْلٍ", "سِتَّةُ", "مَدْرَسَتِي", "فِي"],
+        correct: ["فِي", "مَدْرَسَتِي", "سِتَّةُ", "فُصُوْلٍ"],
+        target: "فِي مَدْرَسَتِي سِتَّةُ فُصُوْلٍ",
+        meaning: "Di sekolahku ada enam kelas",
+        hint: "Pelajaran 1: Ruang kelas"
+      },
+      {
+        chapter: 1,
+        question: "Susun Kalimat: \"Di setiap kelas ada papan tulis dan lemari\"",
+        tokens: ["وَخِزَانَةٌ", "سَبُّوْرَةٌ", "فَصْلٍ", "كُلِّ", "فِي"],
+        correct: ["فِي", "كُلِّ", "فَصْلٍ", "سَبُّوْرَةٌ", "وَخِزَانَةٌ"],
+        target: "فِي كُلِّ فَصْلٍ سَبُّوْرَةٌ وَخِزَانَةٌ",
+        meaning: "Di setiap kelas ada papan tulis dan lemari",
         hint: "Pelajaran 1: Fasilitas kelas"
       },
       {
+        chapter: 1,
+        question: "Susun Kalimat: \"Di kelasku ada sepuluh meja\"",
+        tokens: ["مَكَاتِبَ", "عَشَرَةُ", "فَصْلِي", "فِي"],
+        correct: ["فِي", "فَصْلِي", "عَشَرَةُ", "مَكَاتِبَ"],
+        target: "فِي فَصْلِي عَشَرَةُ مَكَاتِبَ",
+        meaning: "Di kelasku ada sepuluh meja",
+        hint: "Pelajaran 1: Fasilitas kelas"
+      },
+      {
+        chapter: 1,
+        question: "Susun Kalimat: \"Di kelasku ada dua puluh kursi\"",
+        tokens: ["كُرْسِيًّا", "عِشْرُوْنَ", "فَصْلِي", "فِي"],
+        correct: ["فِي", "فَصْلِي", "عِشْرُوْنَ", "كُرْسِيًّا"],
+        target: "فِي فَصْلِي عِشْرُوْنَ كُرْسِيًّا",
+        meaning: "Di kelasku ada dua puluh kursi",
+        hint: "Pelajaran 1: Jumlah kursi"
+      },
+      {
+        chapter: 1,
+        question: "Susun Kalimat: \"Di dalamnya ada 10 anak laki-laki dan 10 anak perempuan\"",
+        tokens: ["بَنَاتٍ", "وَعَشْرُ", "أَوْلَادٍ", "عَشَرَةُ", "فِيْهِ"],
+        correct: ["فِيْهِ", "عَشَرَةُ", "أَوْلَادٍ", "وَعَشْرُ", "بَنَاتٍ"],
+        target: "فِيْهِ عَشَرَةُ أَوْلَادٍ وَعَشْرُ بَنَاتٍ",
+        meaning: "Di dalamnya ada sepuluh anak laki-laki dan sepuluh anak perempuan",
+        hint: "Pelajaran 1: Anggota kelas"
+      },
+
+      // === BAB 2: اَلْأَعْدَادُ ١١-٢٠ (Bilangan 11-20 & Benda) ===
+      {
+        chapter: 2,
+        question: "Susun Kalimat: \"Jam dinding memiliki dua belas angka\"",
+        tokens: ["رَقْمًا", "عَشَرَ", "اثْنَا", "لِلسَّاعَةِ"],
+        correct: ["لِلسَّاعَةِ", "اثْنَا", "عَشَرَ", "رَقْمًا"],
+        target: "لِلسَّاعَةِ اثْنَا عَشَرَ رَقْمًا",
+        meaning: "Jam dinding memiliki dua belas angka",
+        hint: "Pelajaran 2: Jam dinding & Angka 12"
+      },
+      {
+        chapter: 2,
+        question: "Susun Kalimat: \"Penggaris memiliki banyak angka\"",
+        tokens: ["كَثِيْرَةٌ", "أَرْقَامٌ", "لِلْمِسْطَرَةِ"],
+        correct: ["لِلْمِسْطَرَةِ", "أَرْقَامٌ", "كَثِيْرَةٌ"],
+        target: "لِلْمِسْطَرَةِ أَرْقَامٌ كَثِيْرَةٌ",
+        meaning: "Penggaris memiliki banyak angka",
+        hint: "Pelajaran 2: Penggaris & Angka"
+      },
+      {
+        chapter: 2,
+        question: "Susun Kalimat: \"Handphone memiliki sepuluh angka\"",
+        tokens: ["أَرْقَامٍ", "عَشَرَةُ", "لِلْجَوَّالِ"],
+        correct: ["لِلْجَوَّالِ", "عَشَرَةُ", "أَرْقَامٍ"],
+        target: "لِلْجَوَّالِ عَشَرَةُ أَرْقَامٍ",
+        meaning: "Handphone memiliki sepuluh angka",
+        hint: "Pelajaran 2: Handphone"
+      },
+      {
+        chapter: 2,
         question: "Susun Kalimat: \"Saya mempunyai 15 pulpen\"",
-        tokens: ["عِنْدِي", "خَمْسَةَ", "عَشَرَ", "قَلَمًا"],
+        tokens: ["قَلَمًا", "عَشَرَ", "خَمْسَةَ", "عِنْدِي"],
         correct: ["عِنْدِي", "خَمْسَةَ", "عَشَرَ", "قَلَمًا"],
         target: "عِنْدِي خَمْسَةَ عَشَرَ قَلَمًا",
         meaning: "Saya mempunyai 15 pulpen",
-        hint: "Pelajaran 2: Angka 11-20"
+        hint: "Pelajaran 2: Bilangan 15"
       },
       {
+        chapter: 2,
         question: "Susun Kalimat: \"Di dalam tas ada 12 buku\"",
-        tokens: ["فِي", "الْحَقِيبَةِ", "اثْنَا", "عَشَرَ", "كِتَابًا"],
-        correct: ["فِي", "الْحَقِيبَةِ", "اثْنَا", "عَشَرَ", "كِتَابًا"],
-        target: "فِي الْحَقِيبَةِ اثْنَا عَشَرَ كِتَابًا",
+        tokens: ["كِتَابًا", "عَشَرَ", "اثْنَا", "الْحَقِيْبَةِ", "فِي"],
+        correct: ["فِي", "الْحَقِيْبَةِ", "اثْنَا", "عَشَرَ", "كِتَابًا"],
+        target: "فِي الْحَقِيْبَةِ اثْنَا عَشَرَ كِتَابًا",
         meaning: "Di dalam tas ada 12 buku",
         hint: "Pelajaran 2: Bilangan 12"
       },
       {
-        question: "Susun Kalimat: \"Ayahku bukan seorang pelayan\"",
-        tokens: ["أَبِي", "لَيْسَ", "بِخَادِمٍ"],
-        correct: ["أَبِي", "لَيْسَ", "بِخَادِمٍ"],
-        target: "أَبِي لَيْسَ بِخَادِمٍ",
-        meaning: "Ayahku bukan seorang pelayan",
-        hint: "Pelajaran 3: Kaidah Laisa"
+        chapter: 2,
+        question: "Susun Kalimat: \"Di atas rak ada 13 piring\"",
+        tokens: ["صَحْنًا", "عَشَرَ", "ثَلَاثَةَ", "الرَّفِّ", "عَلَى"],
+        correct: ["عَلَى", "الرَّفِّ", "ثَلَاثَةَ", "عَشَرَ", "صَحْنًا"],
+        target: "عَلَى الرَّفِّ ثَلَاثَةَ عَشَرَ صَحْنًا",
+        meaning: "Di atas rak ada 13 piring",
+        hint: "Pelajaran 2: Latihan Buku Hal. 7"
       },
       {
-        question: "Susun Kalimat: \"Ibuku bukan seorang dokter\"",
-        tokens: ["أُمِّي", "لَيْسَتْ", "بِطَبِيبَةٍ"],
-        correct: ["أُمِّي", "لَيْسَتْ", "بِطَبِيبَةٍ"],
-        target: "أُمِّي لَيْسَتْ بِطَبِيبَةٍ",
-        meaning: "Ibuku bukan seorang dokter",
+        chapter: 2,
+        question: "Susun Kalimat: \"Di dalam kelas ada 11 kursi\"",
+        tokens: ["كُرْسِيًّا", "عَشَرَ", "أَحَدَ", "الْفَصْلِ", "فِي"],
+        correct: ["فِي", "الْفَصْلِ", "أَحَدَ", "عَشَرَ", "كُرْسِيًّا"],
+        target: "فِي الْفَصْلِ أَحَدَ عَشَرَ كُرْسِيًّا",
+        meaning: "Di dalam kelas ada 11 kursi",
+        hint: "Pelajaran 2: Bilangan 11"
+      },
+      {
+        chapter: 2,
+        question: "Susun Kalimat: \"Di tempat pensil ada 14 pena\"",
+        tokens: ["قَلَمًا", "عَشَرَ", "أَرْبَعَةَ", "الْمَقْلَمَةِ", "فِي"],
+        correct: ["فِي", "الْمَقْلَمَةِ", "أَرْبَعَةَ", "عَشَرَ", "قَلَمًا"],
+        target: "فِي الْمَقْلَمَةِ أَرْبَعَةَ عَشَرَ قَلَمًا",
+        meaning: "Di dalam tempat pensil ada 14 pena",
+        hint: "Pelajaran 2: Bilangan 14"
+      },
+
+      // === BAB 3: أُسْرَتِيْ وَقَاعِدَةُ لَيْسَ (Keluarga & Kaidah Laisa) ===
+      {
+        chapter: 3,
+        question: "Susun Kalimat: \"Ini foto keluargaku\"",
+        tokens: ["أُسْرَتِي", "صُوْرَةُ", "هَذِهِ"],
+        correct: ["هَذِهِ", "صُوْرَةُ", "أُسْرَتِي"],
+        target: "هَذِهِ صُوْرَةُ أُسْرَتِي",
+        meaning: "Ini foto keluargaku",
+        hint: "Pelajaran 3: Keluarga"
+      },
+      {
+        chapter: 3,
+        question: "Susun Kalimat: \"Ini ayahku dan di sampingnya ibuku\"",
+        tokens: ["أُمِّي", "وَبِجَانِبِهِ", "أَبِي", "هَذَا"],
+        correct: ["هَذَا", "أَبِي", "وَبِجَانِبِهِ", "أُمِّي"],
+        target: "هَذَا أَبِي وَبِجَانِبِهِ أُمِّي",
+        meaning: "Ini ayahku dan di sampingnya adalah ibuku",
+        hint: "Pelajaran 3: Anggota keluarga"
+      },
+      {
+        chapter: 3,
+        question: "Susun Kalimat: \"Saya dan adik perempuanku di depan kedua orang tua kami\"",
+        tokens: ["وَالِدَيْنَا", "أَمَامَ", "وَأُخْتِي", "أَنَا"],
+        correct: ["أَنَا", "وَأُخْتِي", "أَمَامَ", "وَالِدَيْنَا"],
+        target: "أَنَا وَأُخْتِي أَمَامَ وَالِدَيْنَا",
+        meaning: "Saya dan adik perempuanku di depan kedua orang tua kami",
+        hint: "Pelajaran 3: Cerita keluarga"
+      },
+      {
+        chapter: 3,
+        question: "Susun Kalimat: \"Ayahku seorang guru dan bukan pelayan\"",
+        tokens: ["خَادِمًا", "وَلَيْسَ", "مُدَرِّسٌ", "أَبِي"],
+        correct: ["أَبِي", "مُدَرِّسٌ", "وَلَيْسَ", "خَادِمًا"],
+        target: "أَبِي مُدَرِّسٌ وَلَيْسَ خَادِمًا",
+        meaning: "Ayahku seorang guru dan bukan seorang pelayan",
+        hint: "Pelajaran 3: Dhomir Huwa"
+      },
+      {
+        chapter: 3,
+        question: "Susun Kalimat: \"Ibuku ibu rumah tangga dan bukan pembantu\"",
+        tokens: ["خَادِمَةً", "وَلَيْسَتْ", "الْبَيْتِ", "رَبَّةُ", "وَأُمِّي"],
+        correct: ["وَأُمِّي", "رَبَّةُ", "الْبَيْتِ", "وَلَيْسَتْ", "خَادِمَةً"],
+        target: "وَأُمِّي رَبَّةُ الْبَيْتِ وَلَيْسَتْ خَادِمَةً",
+        meaning: "Dan ibuku ibu rumah tangga dan bukan seorang pembantu",
         hint: "Pelajaran 3: Dhomir Hiya"
       },
       {
-        question: "Susun Kalimat: \"Kami bukan anak-anak pemalas\"",
-        tokens: ["نَحْنُ", "لَسْنَا", "بِكَسَالَى"],
-        correct: ["نَحْنُ", "لَسْنَا", "بِكَسَالَى"],
-        target: "نَحْنُ لَسْنَا بِكَسَالَى",
-        meaning: "Kami bukan anak-anak pemalas",
+        chapter: 3,
+        question: "Susun Kalimat: \"Saya seorang murid dan saya bukan guru\"",
+        tokens: ["مُدَرِّسًا", "وَلَسْتُ", "تِلْمِيْذٌ", "أَنَا"],
+        correct: ["أَنَا", "تِلْمِيْذٌ", "وَلَسْتُ", "مُدَرِّسًا"],
+        target: "أَنَا تِلْمِيْذٌ وَلَسْتُ مُدَرِّسًا",
+        meaning: "Saya seorang murid dan saya bukan seorang guru",
+        hint: "Pelajaran 3: Dhomir Ana"
+      },
+      {
+        chapter: 3,
+        question: "Susun Kalimat: \"Adik perempuanku bukan seorang murid\"",
+        tokens: ["تِلْمِيْذَةً", "لَيْسَتْ", "الصَّغِيْرَةُ", "وَأُخْتِي"],
+        correct: ["وَأُخْتِي", "الصَّغِيْرَةُ", "لَيْسَتْ", "تِلْمِيْذَةً"],
+        target: "وَأُخْتِي الصَّغِيْرَةُ لَيْسَتْ تِلْمِيْذَةً",
+        meaning: "Dan adik perempuanku bukan seorang murid",
+        hint: "Pelajaran 3: Dhomir Hiya"
+      },
+      {
+        chapter: 3,
+        question: "Susun Kalimat: \"Kita di sekolah dan kita bukan di lapangan\"",
+        tokens: ["الْمَيْدَانِ", "فِي", "وَلَسْنَا", "الْمَدْرَسَةِ", "فِي", "نَحْنُ"],
+        correct: ["نَحْنُ", "فِي", "الْمَدْرَسَةِ", "وَلَسْنَا", "فِي", "الْمَيْدَانِ"],
+        target: "نَحْنُ فِي الْمَدْرَسَةِ وَلَسْنَا فِي الْمَيْدَانِ",
+        meaning: "Kita di sekolah dan kita bukan di lapangan",
         hint: "Pelajaran 3: Dhomir Nahnu"
       }
     ],

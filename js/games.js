@@ -17,6 +17,8 @@ class MiniGamesHub {
     this.rushIndex = 0;
     this.rushSelected = [];
     this.rushPool = [];
+    this.rushChapter = "all"; // 'all' | '1' | '2' | '3'
+    this.rushList = [];
 
     // State Game 2: Memory
     this.memoryFlippedCards = [];
@@ -36,6 +38,7 @@ class MiniGamesHub {
 
   renderMenu() {
     this.clearTimer();
+    this.closeRushModal();
     this.activeGame = "menu";
     const container = document.getElementById("games-container");
     if (!container) return;
@@ -52,13 +55,13 @@ class MiniGamesHub {
 
       <div class="games-cards-grid">
         <!-- Game 1 -->
-        <div class="game-hub-card glass-card" onclick="window.miniGames.startSentenceRush()">
+        <div class="game-hub-card glass-card" onclick="window.miniGames.showRushInfoModal()">
           <div class="game-badge">Latihan Kalimat</div>
           <div class="game-icon">⚡</div>
           <h3 class="game-name">Susun Kata Cepat</h3>
-          <p class="game-desc">Susun potongan kata Arab menjadi kalimat yang benar sebelum waktu habis.</p>
+          <p class="game-desc">Susun kata Arab sebelum waktu habis! Benar dapat +5 dtk, salah dikurangi 1 dtk.</p>
           <div class="game-stat">Skor Terbaik: ${rushHigh} Poin</div>
-          <button class="btn-primary btn-play-game">Mulai Permainan</button>
+          <button class="btn-primary btn-play-game" onclick="event.stopPropagation(); window.miniGames.showRushInfoModal();">Mulai Permainan</button>
         </div>
 
         <!-- Game 2 -->
@@ -96,14 +99,135 @@ class MiniGamesHub {
   }
 
   // ==========================================
-  // GAME 1: SUSUN KATA CEPAT
+  // GAME 1: SUSUN KATA CEPAT (RUSH)
+  // Info Modal, Tambahan Waktu +5s, Pengurangan -1s
   // ==========================================
 
-  startSentenceRush() {
+  showRushInfoModal() {
+    window.audioEngine.playTap();
+    this.closeRushModal();
+
+    const allSentences = (window.APP_DATA && window.APP_DATA.gamesData && window.APP_DATA.gamesData.scrambleWords) || [];
+    const allCount = allSentences.length;
+    const b1Count = allSentences.filter(s => s.chapter === 1).length;
+    const b2Count = allSentences.filter(s => s.chapter === 2).length;
+    const b3Count = allSentences.filter(s => s.chapter === 3).length;
+
+    const modalBackdrop = document.createElement("div");
+    modalBackdrop.className = "modal-backdrop animate-pop";
+    modalBackdrop.id = "rush-info-modal";
+    modalBackdrop.onclick = (e) => {
+      if (e.target === modalBackdrop) this.closeRushModal();
+    };
+
+    modalBackdrop.innerHTML = `
+      <div class="game-info-modal-card">
+        <div class="modal-header">
+          <div class="modal-badge-group">
+            <span class="modal-title-tag">⚡ Latihan Kalimat</span>
+            <span class="modal-info-pill">Tantangan Cepat</span>
+          </div>
+          <button class="btn-close-modal" onclick="window.miniGames.closeRushModal()" aria-label="Tutup">✕</button>
+        </div>
+
+        <div class="rush-modal-hero">
+          <div class="rush-modal-icon">⚡</div>
+          <h3 class="rush-modal-title">Petunjuk Susun Kata Cepat</h3>
+          <p class="rush-modal-desc">Susun potongan kata Arab menjadi kalimat yang sempurna sebelum waktu habis.</p>
+        </div>
+
+        <div class="rush-rules-box">
+          <div class="rush-rule-item">
+            <span class="rush-rule-icon">⏱️</span>
+            <div class="rush-rule-text">
+              <div class="rush-rule-title">Waktu Mulai: 60 Detik</div>
+              <div class="rush-rule-sub">Permainan dimulai dengan batas waktu <strong>60 detik</strong>.</div>
+            </div>
+          </div>
+          <div class="rush-rule-item highlight-green">
+            <span class="rush-rule-icon">✅</span>
+            <div class="rush-rule-text">
+              <div class="rush-rule-title">Jawaban Benar: +5 Detik & +50 Poin</div>
+              <div class="rush-rule-sub">Tiap kalimat yang benar memberimu <strong>+50 poin</strong> dan <strong>tambahan waktu +5 detik</strong>!</div>
+            </div>
+          </div>
+          <div class="rush-rule-item highlight-red">
+            <span class="rush-rule-icon">⚠️</span>
+            <div class="rush-rule-text">
+              <div class="rush-rule-title">Jawaban Salah: Pengurangan -1 Detik</div>
+              <div class="rush-rule-sub">Hati-hati! Jika susunan salah, waktumu langsung <strong>dikurangi 1 detik</strong>.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rush-ch-select-wrap">
+          <label class="rush-ch-label">Pilih Materi Kalimat:</label>
+          <div class="rush-ch-chips">
+            <button class="rush-ch-chip ${this.rushChapter === 'all' ? 'active' : ''}" onclick="window.miniGames.setRushChapter('all', this)">
+              <span>🌟 Semua Bab</span>
+              <span class="rush-chip-sub">${allCount} Variasi Kalimat</span>
+            </button>
+            <button class="rush-ch-chip ${this.rushChapter === '1' ? 'active' : ''}" onclick="window.miniGames.setRushChapter('1', this)">
+              <span>🏫 Bab 1: Sekolahku</span>
+              <span class="rush-chip-sub">${b1Count} Kalimat</span>
+            </button>
+            <button class="rush-ch-chip ${this.rushChapter === '2' ? 'active' : ''}" onclick="window.miniGames.setRushChapter('2', this)">
+              <span>🔢 Bab 2: Bilangan</span>
+              <span class="rush-chip-sub">${b2Count} Kalimat</span>
+            </button>
+            <button class="rush-ch-chip ${this.rushChapter === '3' ? 'active' : ''}" onclick="window.miniGames.setRushChapter('3', this)">
+              <span>👨‍👩‍👧‍👦 Bab 3: Keluarga</span>
+              <span class="rush-chip-sub">${b3Count} Kalimat</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="rush-modal-actions">
+          <button class="btn-primary btn-start-rush" onclick="window.miniGames.confirmStartSentenceRush()">
+            Mulai Permainan 🚀
+          </button>
+          <button class="btn-secondary btn-cancel-rush" onclick="window.miniGames.closeRushModal()">
+            Batal
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modalBackdrop);
+  }
+
+  setRushChapter(ch, btn) {
+    window.audioEngine.playTap();
+    this.rushChapter = ch;
+    document.querySelectorAll(".rush-ch-chip").forEach(el => el.classList.remove("active"));
+    if (btn) btn.classList.add("active");
+  }
+
+  closeRushModal() {
+    const el = document.getElementById("rush-info-modal");
+    if (el) el.remove();
+  }
+
+  confirmStartSentenceRush() {
+    window.audioEngine.playTap();
+    this.closeRushModal();
+
+    let pool = (window.APP_DATA && window.APP_DATA.gamesData && window.APP_DATA.gamesData.scrambleWords) || [];
+    if (this.rushChapter !== "all") {
+      const chNum = parseInt(this.rushChapter);
+      pool = pool.filter(s => s.chapter === chNum);
+    }
+
+    if (pool.length === 0) {
+      pool = (window.APP_DATA && window.APP_DATA.gamesData && window.APP_DATA.gamesData.scrambleWords) || [];
+    }
+
+    // Acak kalimat agar urutan variatif setiap kali main
+    this.rushList = [...pool].sort(() => Math.random() - 0.5);
     this.clearTimer();
     this.activeGame = "rush";
     this.score = 0;
-    this.timeLeft = 45;
+    this.timeLeft = 60; // 60 detik awal
     this.rushIndex = 0;
     this.renderRushBoard();
 
@@ -119,10 +243,15 @@ class MiniGamesHub {
     }, 1000);
   }
 
+  startSentenceRush() {
+    this.showRushInfoModal();
+  }
+
   renderRushBoard() {
-    const list = window.APP_DATA.gamesData.scrambleWords;
-    if (!list || list.length === 0) return;
-    const current = list[this.rushIndex % list.length];
+    if (!this.rushList || this.rushList.length === 0) {
+      this.rushList = [...(window.APP_DATA.gamesData.scrambleWords || [])];
+    }
+    const current = this.rushList[this.rushIndex % this.rushList.length];
     const sourceTokens = current.tokens || current.letters || (current.target ? current.target.split(" ") : []);
     this.rushPool = [...sourceTokens].sort(() => Math.random() - 0.5);
     this.rushSelected = [];
@@ -131,16 +260,24 @@ class MiniGamesHub {
     if (!container) return;
 
     const questionText = current.question || `Susun Kalimat: "${current.meaning || current.target}"`;
+    const chLabel = current.chapter ? `Bab ${current.chapter}` : `Latihan`;
 
     container.innerHTML = `
       <div class="game-active-wrapper glass-card">
         <div class="game-top-bar">
-          <button class="btn-back-hub" onclick="window.miniGames.renderMenu()">← Kembali</button>
-          <div class="timer-pill">Waktu: <span id="rush-timer-val">${this.timeLeft}</span> dtk</div>
+          <button class="btn-back-hub" onclick="window.miniGames.renderMenu()">← Keluar</button>
+          <div class="timer-pill" id="rush-timer-pill">
+            ⏱️ Waktu: <span id="rush-timer-val">${this.timeLeft}</span> dtk
+            <span id="rush-time-badge" class="time-delta-badge hidden"></span>
+          </div>
           <div class="score-pill">Skor: <span id="rush-score-val">${this.score}</span></div>
         </div>
 
         <div class="rush-prompt-box">
+          <div class="rush-meta-bar">
+            <span class="rush-round-badge">Soal ${(this.rushIndex % this.rushList.length) + 1} dari ${this.rushList.length}</span>
+            <span class="rush-ch-badge">${chLabel}</span>
+          </div>
           <span class="game-sub-title">${questionText}</span>
           <div class="rush-dropzone font-arabic" id="rush-answer-box" dir="rtl">
             <span class="placeholder-text">Ketuk kata Arab untuk menyusun kalimat</span>
@@ -159,6 +296,18 @@ class MiniGamesHub {
         </div>
       </div>
     `;
+  }
+
+  showTimeDeltaBadge(text, typeClass) {
+    const badge = document.getElementById("rush-time-badge");
+    if (!badge) return;
+    badge.className = `time-delta-badge ${typeClass}`;
+    badge.innerText = text;
+    badge.classList.remove("hidden");
+
+    setTimeout(() => {
+      badge.classList.add("hidden");
+    }, 850);
   }
 
   tapRushTile(poolIdx) {
@@ -183,9 +332,8 @@ class MiniGamesHub {
 
   resetRushCurrent() {
     window.audioEngine.playTap();
-    const list = window.APP_DATA.gamesData.scrambleWords;
-    if (!list || list.length === 0) return;
-    const current = list[this.rushIndex % list.length];
+    if (!this.rushList || this.rushList.length === 0) return;
+    const current = this.rushList[this.rushIndex % this.rushList.length];
     const sourceTokens = current.tokens || current.letters || (current.target ? current.target.split(" ") : []);
     this.rushPool = [...sourceTokens];
     this.rushSelected = [];
@@ -215,9 +363,8 @@ class MiniGamesHub {
   }
 
   checkRushAnswer() {
-    const list = window.APP_DATA.gamesData.scrambleWords;
-    if (!list || list.length === 0) return;
-    const current = list[this.rushIndex % list.length];
+    if (!this.rushList || this.rushList.length === 0) return;
+    const current = this.rushList[this.rushIndex % this.rushList.length];
     const userAns = this.rushSelected.join(" ").trim();
     const correctAns = Array.isArray(current.correct) 
       ? current.correct.join(" ").trim() 
@@ -226,8 +373,16 @@ class MiniGamesHub {
     if (userAns === correctAns || (current.target && userAns === current.target.trim())) {
       window.audioEngine.playCorrect();
       this.score += 50;
-      this.timeLeft += 5; // Bonus waktu
+      this.timeLeft += 5; // Bonus waktu +5 detik
       this.rushIndex++;
+
+      const scoreEl = document.getElementById("rush-score-val");
+      if (scoreEl) scoreEl.innerText = this.score;
+
+      const timerEl = document.getElementById("rush-timer-val");
+      if (timerEl) timerEl.innerText = this.timeLeft;
+
+      this.showTimeDeltaBadge("+5 dtk", "badge-gain");
 
       const answerBox = document.getElementById("rush-answer-box");
       if (answerBox) {
@@ -238,10 +393,23 @@ class MiniGamesHub {
       }
     } else {
       window.audioEngine.playWrong();
+      // Pengurangan waktu 1 detik jika salah
+      this.timeLeft = Math.max(0, this.timeLeft - 1);
+
+      const timerEl = document.getElementById("rush-timer-val");
+      if (timerEl) timerEl.innerText = this.timeLeft;
+
+      this.showTimeDeltaBadge("-1 dtk", "badge-loss");
+
       const answerBox = document.getElementById("rush-answer-box");
       if (answerBox) {
         answerBox.classList.add("shake-red");
         setTimeout(() => answerBox.classList.remove("shake-red"), 500);
+      }
+
+      if (this.timeLeft <= 0) {
+        this.clearTimer();
+        setTimeout(() => this.endSentenceRush(), 300);
       }
     }
   }
@@ -258,16 +426,16 @@ class MiniGamesHub {
 
     container.innerHTML = `
       <div class="completion-card glass-card text-center animate-pop">
-        <h3 class="comp-title">Waktu Selesai</h3>
+        <h3 class="comp-title">Waktu Selesai!</h3>
         <p class="comp-subtitle">Permainan Susun Kata Cepat telah berakhir.</p>
 
         <div class="score-summary-box">
           <div class="score-number">${this.score}</div>
-          <div class="score-label">Total Skor yang Kamu Kumpulkan</div>
+          <div class="score-label">Total Skor (${this.rushIndex} Kalimat Tersusun)</div>
         </div>
 
         <div class="comp-buttons">
-          <button class="btn-primary" onclick="window.miniGames.startSentenceRush()">Main Lagi</button>
+          <button class="btn-primary" onclick="window.miniGames.showRushInfoModal()">Main Lagi</button>
           <button class="btn-secondary" onclick="window.miniGames.renderMenu()">Kembali ke Menu Permainan</button>
         </div>
       </div>
