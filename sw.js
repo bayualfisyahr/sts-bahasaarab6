@@ -1,16 +1,16 @@
-const CACHE_NAME = 'almaahirah-v10';
+const CACHE_NAME = 'almaahirah-v14';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './css/style.css',
   './js/data.js',
+  './js/audio-manifest.js',
   './js/audio.js',
   './js/reader.js',
   './js/exercises.js',
   './js/games.js',
   './js/app.js',
   './manifest.json',
-  './assets/icon.svg',
   './assets/logo.png'
 ];
 
