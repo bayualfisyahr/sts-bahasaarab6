@@ -32,69 +32,75 @@ window.APP_DATA = {
         sentences: [
           {
             id: "b1-s1",
-            arabic: "هَذِهِ مَدْرَسَتِي، مَدْرَسَتِي فِي الْقَرْيَةِ",
+            arabic: "هَذِهِ مَدْرَسَتِي، مَدْرَسَتِي فِي الْقَرْيَةِ.",
             translation: "Ini sekolahku, sekolahku berada di desa.",
-            audioText: "هَذِهِ مَدْرَسَتِي، مَدْرَسَتِي فِي الْقَرْيَةِ",
+            audioText: "هَذِهِ مَدْرَسَتِي، مَدْرَسَتِي فِي الْقَرْيَةِ.",
             words: [
               { ar: "هَذِهِ", tr: "hâdzihi", id: "ini (kata tunjuk muannats)", type: "Isim Isyarah" },
-              { ar: "مَدْرَسَتِي", tr: "madrasatî", id: "sekolahku", type: "Isim + Ya Mutakallim" },
+              { ar: "مَدْرَسَتِي", punct: "،", tr: "madrasatî", id: "sekolahku", type: "Isim + Ya Mutakallim" },
               { ar: "مَدْرَسَتِي", tr: "madrasatî", id: "sekolahku", type: "Isim + Ya Mutakallim" },
               { ar: "فِي", tr: "fî", id: "di / di dalam", type: "Harf Jar" },
-              { ar: "الْقَرْيَةِ", tr: "al-qaryati", id: "desa", type: "Isim Majrur" }
+              { ar: "الْقَرْيَةِ", punct: ".", tr: "al-qaryati", id: "desa", type: "Isim Majrur" }
             ]
           },
           {
             id: "b1-s2",
-            arabic: "مَدْرَسَتِي كَبِيرَةٌ وَوَاسِعَةٌ، فِيْهَا تَلَامِيْذُ كَثِيْرُوْنَ",
+            arabic: "مَدْرَسَتِي كَبِيرَةٌ وَوَاسِعَةٌ، فِيْهَا تَلَامِيْذُ كَثِيْرُوْنَ.",
             translation: "Sekolahku besar dan luas, di dalamnya terdapat banyak murid.",
-            audioText: "مَدْرَسَتِي كَبِيرَةٌ وَوَاسِعَةٌ، فِيْهَا تَلَامِيْذُ كَثِيْرُوْنَ",
+            audioText: "مَدْرَسَتِي كَبِيرَةٌ وَوَاسِعَةٌ، فِيْهَا تَلَامِيْذُ كَثِيْرُوْنَ.",
             words: [
               { ar: "مَدْرَسَتِي", tr: "madrasatî", id: "sekolahku", type: "Isim" },
               { ar: "كَبِيرَةٌ", tr: "kabîratun", id: "besar", type: "Kata Sifat (Na'at)" },
-              { ar: "وَوَاسِعَةٌ", tr: "wa-wâsi'atun", id: "dan luas", type: "Wawu Athaf + Sifat" },
+              { ar: "وَوَاسِعَةٌ", punct: "،", tr: "wa-wâsi'atun", id: "dan luas", type: "Wawu Athaf + Sifat" },
               { ar: "فِيْهَا", tr: "fîhâ", id: "di dalamnya (sekolah)", type: "Jar wa Majrur" },
               { ar: "تَلَامِيْذُ", tr: "talâmîdzu", id: "murid-murid", type: "Isim Jama' Taksir" },
-              { ar: "كَثِيْرُوْنَ", tr: "katsîrûna", id: "banyak", type: "Kata Sifat Jama'" }
+              { ar: "كَثِيْرُوْنَ", punct: ".", tr: "katsîrûna", id: "banyak", type: "Kata Sifat Jama'" }
             ]
           },
           {
             id: "b1-s3",
-            arabic: "فِي مَدْرَسَتِي سِتَّةُ فُصُوْلٍ، فِي كُلِّ فَصْلٍ سَبُّوْرَةٌ وَخِزَانَةٌ وَمَكَاتِبُ وَ كَرَاسِيُّ",
+            arabic: "فِي مَدْرَسَتِي سِتَّةُ فُصُوْلٍ، فِي كُلِّ فَصْلٍ سَبُّوْرَةٌ وَخِزَانَةٌ وَمَكَاتِبُ وَ كَرَاسِيُّ.",
             translation: "Di sekolahku ada enam kelas, di setiap kelas ada papan tulis, lemari, meja-meja, dan kursi-kursi.",
-            audioText: "فِي مَدْرَسَتِي سِتَّةُ فُصُوْلٍ، فِي كُلِّ فَصْلٍ سَبُّوْرَةٌ وَخِزَانَةٌ وَمَكَاتِبُ وَ كَرَاسِيُّ",
+            audioText: "فِي مَدْرَسَتِي سِتَّةُ فُصُوْلٍ، فِي كُلِّ فَصْلٍ سَبُّوْرَةٌ وَخِزَانَةٌ وَمَكَاتِبُ وَ كَرَاسِيُّ.",
             words: [
               { ar: "فِي", tr: "fî", id: "di / pada", type: "Harf Jar" },
               { ar: "مَدْرَسَتِي", tr: "madrasatî", id: "sekolahku", type: "Isim" },
               { ar: "سِتَّةُ", tr: "sittatu", id: "enam", type: "Bilangan ('Adad)" },
-              { ar: "فُصُوْلٍ", tr: "fushûlin", id: "kelas-kelas", type: "Benda yang dihitung (Ma'dud)" },
+              { ar: "فُصُوْلٍ", punct: "،", tr: "fushûlin", id: "kelas-kelas", type: "Benda yang dihitung (Ma'dud)" },
               { ar: "فِي", tr: "fî", id: "di", type: "Harf Jar" },
               { ar: "كُلِّ", tr: "kulli", id: "setiap / masing-masing", type: "Isim" },
               { ar: "فَصْلٍ", tr: "fashlin", id: "kelas", type: "Mudhaf Ilaih" },
               { ar: "سَبُّوْرَةٌ", tr: "sabbûratun", id: "papan tulis", type: "Isim" },
               { ar: "وَخِزَانَةٌ", tr: "wa-khizânatun", id: "dan lemari", type: "Isim" },
               { ar: "وَمَكَاتِبُ", tr: "wa-makâtibu", id: "dan meja-meja", type: "Jama' maktab" },
-              { ar: "وَكَرَاسِيُّ", tr: "wa-karâsiyyu", id: "dan kursi-kursi", type: "Jama' kursiy" }
+              { ar: "وَكَرَاسِيُّ", punct: ".", tr: "wa-karâsiyyu", id: "dan kursi-kursi", type: "Jama' kursiy" }
             ]
           },
           {
             id: "b1-s4",
-            arabic: "فِي فَصْلِي عَشَرَةُ مَكَاتِبَ وَعِشْرُوْنَ كُرْسِيًّا، فِيْهِ عَشَرَةُ أَوْلَادٍ وَ عَشْرُ بَنَاتٍ، عَلَى كُلِّ كُرْسِيٍّ وَلَدٌ وَاحِدٌ أَوْ بِنْتٌ وَاحِدَةٌ",
+            arabic: "فِي فَصْلِي عَشَرَةُ مَكَاتِبَ وَعِشْرُوْنَ كُرْسِيًّا، فِيْهِ عَشَرَةُ أَوْلَادٍ وَ عَشْرُ بَنَاتٍ، عَلَى كُلِّ كُرْسِيٍّ وَلَدٌ وَاحِدٌ أَوْ بِنْتٌ وَاحِدَةٌ.",
             translation: "Di kelasku ada sepuluh meja dan dua puluh kursi, di dalamnya ada sepuluh anak laki-laki dan sepuluh anak perempuan, di setiap kursi ada satu anak laki-laki atau satu anak perempuan.",
-            audioText: "فِي فَصْلِي عَشَرَةُ مَكَاتِبَ وَعِشْرُوْنَ كُرْسِيًّا، فِيْهِ عَشَرَةُ أَوْلَادٍ وَ عَشْرُ بَنَاتٍ، عَلَى كُلِّ كُرْسِيٍّ وَلَدٌ وَاحِدٌ أَوْ بِنْتٌ وَاحِدَةٌ",
+            audioText: "فِي فَصْلِي عَشَرَةُ مَكَاتِبَ وَعِشْرُوْنَ كُرْسِيًّا، فِيْهِ عَشَرَةُ أَوْلَادٍ وَ عَشْرُ بَنَاتٍ، عَلَى كُلِّ كُرْسِيٍّ وَلَدٌ وَاحِدٌ أَوْ بِنْتٌ وَاحِدَةٌ.",
             words: [
-              { ar: "فِي فَصْلِي", tr: "fî fashlî", id: "di kelasku", type: "Jar wa Majrur" },
+              { ar: "فِي", tr: "fî", id: "di", type: "Harf Jar" },
+              { ar: "فَصْلِي", tr: "fashlî", id: "kelasku", type: "Isim" },
               { ar: "عَشَرَةُ", tr: "‘asyaratu", id: "sepuluh", type: "Bilangan ('Adad)" },
               { ar: "مَكَاتِبَ", tr: "makâtiba", id: "meja-meja", type: "Ma'dud Jama'" },
               { ar: "وَعِشْرُوْنَ", tr: "wa-'isyrûna", id: "dan dua puluh", type: "Bilangan puluhan" },
-              { ar: "كُرْسِيًّا", tr: "kursiyyan", id: "kursi", type: "Tamyiz manshub" },
+              { ar: "كُرْسِيًّا", punct: "،", tr: "kursiyyan", id: "kursi", type: "Tamyiz manshub" },
               { ar: "فِيْهِ", tr: "fîhi", id: "di dalam kelas itu", type: "Jar wa Majrur" },
-              { ar: "عَشَرَةُ أَوْلَادٍ", tr: "‘asyaratu awlâdin", id: "sepuluh anak laki-laki", type: "Adad Ma'dud" },
-              { ar: "وَعَشْرُ بَنَاتٍ", tr: "wa-'asyru banâtin", id: "dan sepuluh anak perempuan", type: "Adad Ma'dud" },
+              { ar: "عَشَرَةُ", tr: "‘asyaratu", id: "sepuluh", type: "Bilangan ('Adad)" },
+              { ar: "أَوْلَادٍ", tr: "awlâdin", id: "anak-anak laki-laki", type: "Ma'dud" },
+              { ar: "وَعَشْرُ", tr: "wa-'asyru", id: "dan sepuluh", type: "Bilangan ('Adad)" },
+              { ar: "بَنَاتٍ", punct: "،", tr: "banâtin", id: "anak perempuan", type: "Ma'dud" },
               { ar: "عَلَى", tr: "‘alâ", id: "di atas", type: "Harf Jar" },
-              { ar: "كُلِّ كُرْسِيٍّ", tr: "kulli kursiyyin", id: "setiap kursi", type: "Mudhaf + Mudhaf Ilaih" },
-              { ar: "وَلَدٌ وَاحِدٌ", tr: "waladun wâhidun", id: "satu anak laki-laki", type: "Mubtada/Na'at" },
+              { ar: "كُلِّ", tr: "kulli", id: "setiap", type: "Isim" },
+              { ar: "كُرْسِيٍّ", tr: "kursiyyin", id: "kursi", type: "Mudhaf Ilaih" },
+              { ar: "وَلَدٌ", tr: "waladun", id: "satu anak laki-laki", type: "Mubtada" },
+              { ar: "وَاحِدٌ", tr: "wâhidun", id: "satu", type: "Na'at / Sifat" },
               { ar: "أَوْ", tr: "aw", id: "atau", type: "Harf Athaf" },
-              { ar: "بِنْتٌ وَاحِدَةٌ", tr: "bintun wâhidatun", id: "satu anak perempuan", type: "Ma'thuf" }
+              { ar: "بِنْتٌ", tr: "bintun", id: "anak perempuan", type: "Ma'thuf" },
+              { ar: "وَاحِدَةٌ", punct: ".", tr: "wâhidatun", id: "satu", type: "Na'at / Sifat" }
             ]
           }
         ]
@@ -203,7 +209,7 @@ window.APP_DATA = {
       story: {
         titleArabic: "اَلْأَدَوَاتُ وَالْأَرْقَامُ",
         titleLatin: "Benda-Benda & Angka",
-        fullAudioText: "مَا هَذِهِ؟ هَذِهِ سَاعَةٌ. مَاذَا لِلسَّاعَةِ؟ لِلسَّاعَةِ رَقْمٌ. كَمْ رَقْمًا لِلسَّاعَةِ؟ لَهَا اثْنَا عَشَرَ رَقْمًا. مَا هَذِهِ؟ هَذِهِ مِسْطَرَةٌ. هَلْ لِلْمِسْطَرَةِ رَقْمٌ كَذَلِكَ؟ نَعَمْ، لَهَا رَقْمٌ كَذَلِكَ. كَمْ رَقْمًا لِلْمِسْطَرَةِ؟ لَهَا أَرْقَامٌ كَثِيْرَةٌ. مَا هَذَا؟ هَذَا جَوَّالٌ. هَلْ لِلْجَوَّالِ رَقْمٌ؟ نَعَمْ لَهُ رَقْمٌ. كَمْ رَقْمًا لِلْجَوَّالِ؟ لَهُ عَشَرَةُ أَرْقَامٍ.",
+        fullAudioText: "مَا هَذِهِ؟ هَذِهِ سَاعَةٌ. مَاذَا لِلسَّاعَةِ؟ لِلسَّاعَةِ رَقْمٌ. كَمْ رَقْمًا لِلسَّاعَةِ؟ لَهَا اثْنَا عَشَرَ رَقْمًا. مَا هَذِهِ؟ هَذِهِ مِسْطَرَةٌ. هَلْ لِلْمِسْطَرَةِ رَقْمٌ كَذَلِكَ؟ نَعَمْ، لَهَا رَقْمٌ كَذَلِكَ. كَمْ رَقْمًا لِلْمِسْطَرَةِ؟ لَهَا أَرْقَامٌ كَثِيْرَةٌ. مَا هَذَا؟ هَذَا جَوَّالٌ. هَلْ لِلْجَوَّالِ رَقْمٌ؟ نَعَمْ، لَهُ رَقْمٌ. كَمْ رَقْمًا لِلْجَوَّالِ؟ لَهُ عَشَرَةُ أَرْقَامٍ.",
         sentences: [
           {
             id: "b2-s1",
@@ -212,19 +218,19 @@ window.APP_DATA = {
             audioText: "مَا هَذِهِ؟ هَذِهِ سَاعَةٌ. مَاذَا لِلسَّاعَةِ؟ لِلسَّاعَةِ رَقْمٌ. كَمْ رَقْمًا لِلسَّاعَةِ؟ لَهَا اثْنَا عَشَرَ رَقْمًا.",
             words: [
               { ar: "مَا", tr: "mâ", id: "apa", type: "Kata Tanya" },
+              { ar: "هَذِهِ", punct: "؟", tr: "hâdzihi", id: "ini (kata tunjuk perempuan)", type: "Isim Isyarah" },
               { ar: "هَذِهِ", tr: "hâdzihi", id: "ini (kata tunjuk perempuan)", type: "Isim Isyarah" },
-              { ar: "هَذِهِ", tr: "hâdzihi", id: "ini (kata tunjuk perempuan)", type: "Isim Isyarah" },
-              { ar: "سَاعَةٌ", tr: "sâ'atun", id: "jam dinding", type: "Isim Muannats" },
+              { ar: "سَاعَةٌ", punct: ".", tr: "sâ'atun", id: "jam dinding", type: "Isim Muannats" },
               { ar: "مَاذَا", tr: "mâdzâ", id: "apa yang / apakah", type: "Kata Tanya" },
+              { ar: "لِلسَّاعَةِ", punct: "؟", tr: "lis-sâ'ati", id: "bagi jam / pada jam", type: "Jar wa Majrur" },
               { ar: "لِلسَّاعَةِ", tr: "lis-sâ'ati", id: "bagi jam / pada jam", type: "Jar wa Majrur" },
-              { ar: "لِلسَّاعَةِ", tr: "lis-sâ'ati", id: "bagi jam / pada jam", type: "Jar wa Majrur" },
-              { ar: "رَقْمٌ", tr: "raqmun", id: "angka / nomor", type: "Isim" },
+              { ar: "رَقْمٌ", punct: ".", tr: "raqmun", id: "angka / nomor", type: "Isim" },
               { ar: "كَمْ", tr: "kam", id: "berapa", type: "Kata Tanya" },
               { ar: "رَقْمًا", tr: "raqman", id: "angka", type: "Tamyiz (Ma'dud)" },
-              { ar: "لِلسَّاعَةِ", tr: "lis-sâ'ati", id: "bagi jam / pada jam", type: "Jar wa Majrur" },
+              { ar: "لِلسَّاعَةِ", punct: "؟", tr: "lis-sâ'ati", id: "bagi jam / pada jam", type: "Jar wa Majrur" },
               { ar: "لَهَا", tr: "lahâ", id: "ia memiliki", type: "Jar wa Majrur" },
               { ar: "اثْنَا عَشَرَ", tr: "itsnâ 'asyara", id: "dua belas (12)", type: "Bilangan / Adad" },
-              { ar: "رَقْمًا", tr: "raqman", id: "angka", type: "Tamyiz (Ma'dud)" }
+              { ar: "رَقْمًا", punct: ".", tr: "raqman", id: "angka", type: "Tamyiz (Ma'dud)" }
             ]
           },
           {
@@ -234,23 +240,23 @@ window.APP_DATA = {
             audioText: "مَا هَذِهِ؟ هَذِهِ مِسْطَرَةٌ. هَلْ لِلْمِسْطَرَةِ رَقْمٌ كَذَلِكَ؟ نَعَمْ، لَهَا رَقْمٌ كَذَلِكَ. كَمْ رَقْمًا لِلْمِسْطَرَةِ؟ لَهَا أَرْقَامٌ كَثِيْرَةٌ.",
             words: [
               { ar: "مَا", tr: "mâ", id: "apa", type: "Kata Tanya" },
+              { ar: "هَذِهِ", punct: "؟", tr: "hâdzihi", id: "ini (kata tunjuk perempuan)", type: "Isim Isyarah" },
               { ar: "هَذِهِ", tr: "hâdzihi", id: "ini (kata tunjuk perempuan)", type: "Isim Isyarah" },
-              { ar: "هَذِهِ", tr: "hâdzihi", id: "ini (kata tunjuk perempuan)", type: "Isim Isyarah" },
-              { ar: "مِسْطَرَةٌ", tr: "mistharatun", id: "penggaris", type: "Isim Muannats" },
+              { ar: "مِسْطَرَةٌ", punct: ".", tr: "mistharatun", id: "penggaris", type: "Isim Muannats" },
               { ar: "هَلْ", tr: "hal", id: "apakah", type: "Huruf Istifham" },
               { ar: "لِلْمِسْطَرَةِ", tr: "lil-mistharati", id: "bagi penggaris", type: "Jar wa Majrur" },
               { ar: "رَقْمٌ", tr: "raqmun", id: "angka", type: "Isim" },
-              { ar: "كَذَلِكَ", tr: "kadzâlika", id: "demikian pula / juga", type: "Keterangan" },
-              { ar: "نَعَمْ", tr: "na'am", id: "ya", type: "Huruf Jawab" },
+              { ar: "كَذَلِكَ", punct: "؟", tr: "kadzâlika", id: "demikian pula / juga", type: "Keterangan" },
+              { ar: "نَعَمْ", punct: "،", tr: "na'am", id: "ya", type: "Huruf Jawab" },
               { ar: "لَهَا", tr: "lahâ", id: "ia memiliki", type: "Jar wa Majrur" },
               { ar: "رَقْمٌ", tr: "raqmun", id: "angka", type: "Isim" },
-              { ar: "كَذَلِكَ", tr: "kadzâlika", id: "demikian pula / juga", type: "Keterangan" },
+              { ar: "كَذَلِكَ", punct: ".", tr: "kadzâlika", id: "demikian pula / juga", type: "Keterangan" },
               { ar: "كَمْ", tr: "kam", id: "berapa", type: "Kata Tanya" },
               { ar: "رَقْمًا", tr: "raqman", id: "angka", type: "Tamyiz (Ma'dud)" },
-              { ar: "لِلْمِسْطَرَةِ", tr: "lil-mistharati", id: "bagi penggaris", type: "Jar wa Majrur" },
+              { ar: "لِلْمِسْطَرَةِ", punct: "؟", tr: "lil-mistharati", id: "bagi penggaris", type: "Jar wa Majrur" },
               { ar: "لَهَا", tr: "lahâ", id: "ia memiliki", type: "Jar wa Majrur" },
               { ar: "أَرْقَامٌ", tr: "arqâmun", id: "angka-angka", type: "Jama' Taksir" },
-              { ar: "كَثِيْرَةٌ", tr: "katsîratun", id: "banyak", type: "Kata Sifat (Na'at)" }
+              { ar: "كَثِيْرَةٌ", punct: ".", tr: "katsîratun", id: "banyak", type: "Kata Sifat (Na'at)" }
             ]
           },
           {
@@ -260,21 +266,21 @@ window.APP_DATA = {
             audioText: "مَا هَذَا؟ هَذَا جَوَّالٌ. هَلْ لِلْجَوَّالِ رَقْمٌ؟ نَعَمْ، لَهُ رَقْمٌ. كَمْ رَقْمًا لِلْجَوَّالِ؟ لَهُ عَشَرَةُ أَرْقَامٍ.",
             words: [
               { ar: "مَا", tr: "mâ", id: "apa", type: "Kata Tanya" },
+              { ar: "هَذَا", punct: "؟", tr: "hâdzâ", id: "ini (kata tunjuk laki-laki)", type: "Isim Isyarah Mudzakkar" },
               { ar: "هَذَا", tr: "hâdzâ", id: "ini (kata tunjuk laki-laki)", type: "Isim Isyarah Mudzakkar" },
-              { ar: "هَذَا", tr: "hâdzâ", id: "ini (kata tunjuk laki-laki)", type: "Isim Isyarah Mudzakkar" },
-              { ar: "جَوَّالٌ", tr: "jawwâlun", id: "handphone / HP", type: "Isim Mudzakkar" },
+              { ar: "جَوَّالٌ", punct: ".", tr: "jawwâlun", id: "handphone / HP", type: "Isim Mudzakkar" },
               { ar: "هَلْ", tr: "hal", id: "apakah", type: "Huruf Istifham" },
               { ar: "لِلْجَوَّالِ", tr: "lil-jawwâli", id: "bagi handphone", type: "Jar wa Majrur" },
-              { ar: "رَقْمٌ", tr: "raqmun", id: "angka / nomor", type: "Isim" },
-              { ar: "نَعَمْ", tr: "na'am", id: "ya", type: "Huruf Jawab" },
+              { ar: "رَقْمٌ", punct: "؟", tr: "raqmun", id: "angka / nomor", type: "Isim" },
+              { ar: "نَعَمْ", punct: "،", tr: "na'am", id: "ya", type: "Huruf Jawab" },
               { ar: "لَهُ", tr: "lahu", id: "ia memiliki", type: "Jar wa Majrur" },
-              { ar: "رَقْمٌ", tr: "raqmun", id: "angka / nomor", type: "Isim" },
+              { ar: "رَقْمٌ", punct: ".", tr: "raqmun", id: "angka / nomor", type: "Isim" },
               { ar: "كَمْ", tr: "kam", id: "berapa", type: "Kata Tanya" },
               { ar: "رَقْمًا", tr: "raqman", id: "angka", type: "Tamyiz (Ma'dud)" },
-              { ar: "لِلْجَوَّالِ", tr: "lil-jawwâli", id: "bagi handphone", type: "Jar wa Majrur" },
+              { ar: "لِلْجَوَّالِ", punct: "؟", tr: "lil-jawwâli", id: "bagi handphone", type: "Jar wa Majrur" },
               { ar: "لَهُ", tr: "lahu", id: "ia memiliki", type: "Jar wa Majrur" },
               { ar: "عَشَرَةُ", tr: "'asyaratu", id: "sepuluh (10)", type: "Bilangan / Adad" },
-              { ar: "أَرْقَامٍ", tr: "arqâmin", id: "angka-angka", type: "Ma'dud Jamak Majrur" }
+              { ar: "أَرْقَامٍ", punct: ".", tr: "arqâmin", id: "angka-angka", type: "Ma'dud Jamak Majrur" }
             ]
           }
         ]
@@ -357,86 +363,96 @@ window.APP_DATA = {
       story: {
         titleArabic: "أُسْرَتِيْ",
         titleLatin: "Keluargaku",
-        fullAudioText: "هَذِهِ صُوْرَةُ أُسْرَتِي، هَذَا أَبِي وَ بِجَانِبِهِ أُمِّي. أَنَا وَ أُخْتِي الصَّغِيْرَةُ أَمَامَ وَالِدَيْنَا. أَبِي مُدَرِّسٌ فِي الْمَدْرَسَةِ، وَلَيْسَ خَادِمًا. وَأُمِّي رَبَّةُ الْبَيْتِ وَلَيْسَتْ خَادِمَةً. أَنَا تِلْمِيْذٌ فِي الْمَدْرَسَةِ الْإِبْتِدَائِيَّةِ وَلَسْتُ تِلْمِيْذًا فِي الْمَدْرَسَةِ الثَّانَوِيَّةِ. وَأُخْتِي الصَّغِيْرَةُ لَيْسَتْ تِلْمِيْذَةً، هِيَ صَغِيْرَةٌ، عُمْرُهَا ثَلَاثُ سَنَوَاتٍ.",
+        fullAudioText: "هَذِهِ صُوْرَةُ أُسْرَتِي، هَذَا أَبِي وَ بِجَانِبِهِ أُمِّي. أَنَا وَ أُخْتِي الصَّغِيْرَةُ أَمَامَ وَالِدَيْنَا. أَبِي مُدَرِّسٌ فِي الْمَدْرَسَةِ، وَلَيْسَ خَادِمًا. وَأُمِّي رَبَّةُ الْبَيْتِ وَلَيْسَتْ خَادِمَةً. أَنَا تِلْمِيْذٌ فِي الْمَدْرَسَةِ الْإِبْتِدَائِيَّةِ، وَلَسْتُ تِلْمِيْذًا فِي الْمَدْرَسَةِ الثَّانَوِيَّةِ. وَأُخْتِي الصَّغِيْرَةُ لَيْسَتْ تِلْمِيْذَةً، هِيَ صَغِيْرَةٌ، عُمْرُهَا ثَلَاثُ سَنَوَاتٍ.",
         sentences: [
           {
             id: "b3-s1",
-            arabic: "هَذِهِ صُوْرَةُ أُسْرَتِي، هَذَا أَبِي وَ بِجَانِبِهِ أُمِّي",
+            arabic: "هَذِهِ صُوْرَةُ أُسْرَتِي، هَذَا أَبِي وَ بِجَانِبِهِ أُمِّي.",
             translation: "Ini foto keluargaku, ini ayahku dan di sampingnya adalah ibuku.",
-            audioText: "هَذِهِ صُوْرَةُ أُسْرَتِي، هَذَا أَبِي وَ بِجَانِبِهِ أُمِّي",
+            audioText: "هَذِهِ صُوْرَةُ أُسْرَتِي، هَذَا أَبِي وَ بِجَانِبِهِ أُمِّي.",
             words: [
-              { ar: "هَذِهِ", tr: "hâdzihi", id: "ini (muannats)", type: "Isim Isyarah" },
+              { ar: "هَذِهِ", tr: "hâdzihi", id: "ini (kata tunjuk perempuan)", type: "Isim Isyarah" },
               { ar: "صُوْرَةُ", tr: "shûratu", id: "foto / gambar", type: "Isim" },
-              { ar: "أُسْرَتِي", tr: "usratî", id: "keluargaku", type: "Mudhaf Ilaih" },
-              { ar: "هَذَا", tr: "hâdzâ", id: "ini (mudzakkar)", type: "Isim Isyarah" },
+              { ar: "أُسْرَتِي", punct: "،", tr: "usratî", id: "keluargaku", type: "Mudhaf Ilaih" },
+              { ar: "هَذَا", tr: "hâdzâ", id: "ini (kata tunjuk laki-laki)", type: "Isim Isyarah" },
               { ar: "أَبِي", tr: "abî", id: "ayahku", type: "Isim" },
               { ar: "وَبِجَانِبِهِ", tr: "wa-bijânibihi", id: "dan di sampingnya", type: "Zharaf Makan" },
-              { ar: "أُمِّي", tr: "ummî", id: "ibuku", type: "Isim" }
+              { ar: "أُمِّي", punct: ".", tr: "ummî", id: "ibuku", type: "Isim" }
             ]
           },
           {
             id: "b3-s2",
-            arabic: "أَنَا وَ أُخْتِي الصَّغِيْرَةُ أَمَامَ وَالِدَيْنَا",
+            arabic: "أَنَا وَ أُخْتِي الصَّغِيْرَةُ أَمَامَ وَالِدَيْنَا.",
             translation: "Saya dan adik perempuanku yang kecil berada di depan kedua orang tua kami.",
-            audioText: "أَنَا وَ أُخْتِي الصَّغِيْرَةُ أَمَامَ وَالِدَيْنَا",
+            audioText: "أَنَا وَ أُخْتِي الصَّغِيْرَةُ أَمَامَ وَالِدَيْنَا.",
             words: [
               { ar: "أَنَا", tr: "anâ", id: "saya", type: "Dhomir Munfashil" },
               { ar: "وَأُخْتِي", tr: "wa-ukhtî", id: "dan saudara/adik perempuanku", type: "Isim" },
-              { ar: "الصَّغِيْرَةُ", tr: "ash-shaghîratu", id: "yang kecil", type: "Na'at / Sifat" },
+              { ar: "الصَّغِيْرَةُ", tr: "ash-shaghîratu", id: "yang kecil (adik)", type: "Na'at / Sifat" },
               { ar: "أَمَامَ", tr: "amâma", id: "di depan", type: "Zharaf Makan" },
-              { ar: "وَالِدَيْنَا", tr: "wâlidaynâ", id: "kedua orang tua kami", type: "Mudhaf Ilaih" }
+              { ar: "وَالِدَيْنَا", punct: ".", tr: "wâlidaynâ", id: "kedua orang tua kami", type: "Mudhaf Ilaih" }
             ]
           },
           {
             id: "b3-s3",
-            arabic: "أَبِي مُدَرِّسٌ فِي الْمَدْرَسَةِ، وَلَيْسَ خَادِمًا",
+            arabic: "أَبِي مُدَرِّسٌ فِي الْمَدْرَسَةِ، وَلَيْسَ خَادِمًا.",
             translation: "Ayahku seorang guru di sekolah, dan bukan seorang pelayan.",
-            audioText: "أَبِي مُدَرِّسٌ فِي الْمَدْرَسَةِ، وَلَيْسَ خَادِمًا",
+            audioText: "أَبِي مُدَرِّسٌ فِي الْمَدْرَسَةِ، وَلَيْسَ خَادِمًا.",
             words: [
               { ar: "أَبِي", tr: "abî", id: "ayahku", type: "Mubtada" },
               { ar: "مُدَرِّسٌ", tr: "mudarrisun", id: "seorang guru (lk)", type: "Khabar" },
-              { ar: "فِي الْمَدْرَسَةِ", tr: "fîl-madrasati", id: "di sekolah", type: "Jar wa Majrur" },
+              { ar: "فِي", tr: "fî", id: "di / pada", type: "Harf Jar" },
+              { ar: "الْمَدْرَسَةِ", punct: "،", tr: "al-madrasati", id: "sekolah", type: "Isim Majrur" },
               { ar: "وَلَيْسَ", tr: "wa-laysa", id: "dan dia bukan", type: "Fi'il Madhi Naqis" },
-              { ar: "خَادِمًا", tr: "khâdiman", id: "seorang pelayan (manshub)", type: "Khabar Laisa" }
+              { ar: "خَادِمًا", punct: ".", tr: "khâdiman", id: "seorang pelayan (manshub)", type: "Khabar Laisa" }
             ]
           },
           {
             id: "b3-s4",
-            arabic: "وَأُمِّي رَبَّةُ الْبَيْتِ وَلَيْسَتْ خَادِمَةً",
+            arabic: "وَأُمِّي رَبَّةُ الْبَيْتِ وَلَيْسَتْ خَادِمَةً.",
             translation: "Dan ibuku seorang ibu rumah tangga dan bukan seorang pembantu.",
-            audioText: "وَأُمِّي رَبَّةُ الْبَيْتِ وَلَيْسَتْ خَادِمَةً",
+            audioText: "وَأُمِّي رَبَّةُ الْبَيْتِ وَلَيْسَتْ خَادِمَةً.",
             words: [
               { ar: "وَأُمِّي", tr: "wa-ummî", id: "dan ibuku", type: "Mubtada" },
-              { ar: "رَبَّةُ الْبَيْتِ", tr: "rabbatu-albayti", id: "ibu rumah tangga", type: "Idhafah" },
+              { ar: "رَبَّةُ", tr: "rabbatu", id: "pengurus / nyonya", type: "Mudhaf" },
+              { ar: "الْبَيْتِ", tr: "al-bayti", id: "rumah", type: "Mudhaf Ilaih" },
               { ar: "وَلَيْسَتْ", tr: "wa-laysat", id: "dan dia (pr) bukan", type: "Laisa Muannats" },
-              { ar: "خَادِمَةً", tr: "khâdimatan", id: "seorang pembantu (manshub)", type: "Khabar Laisa" }
+              { ar: "خَادِمَةً", punct: ".", tr: "khâdimatan", id: "seorang pembantu (manshub)", type: "Khabar Laisa" }
             ]
           },
           {
             id: "b3-s5",
-            arabic: "أَنَا تِلْمِيْذٌ فِي الْمَدْرَسَةِ الْإِبْتِدَائِيَّةِ وَلَسْتُ تِلْمِيْذًا فِي الْمَدْرَسَةِ الثَّانَوِيَّةِ",
+            arabic: "أَنَا تِلْمِيْذٌ فِي الْمَدْرَسَةِ الْإِبْتِدَائِيَّةِ، وَلَسْتُ تِلْمِيْذًا فِي الْمَدْرَسَةِ الثَّانَوِيَّةِ.",
             translation: "Saya seorang murid di MI / SD dan saya bukan seorang murid di SMP / MTs.",
-            audioText: "أَنَا تِلْمِيْذٌ فِي الْمَدْرَسَةِ الْإِبْتِدَائِيَّةِ وَلَسْتُ تِلْمِيْذًا فِي الْمَدْرَسَةِ الثَّانَوِيَّةِ",
+            audioText: "أَنَا تِلْمِيْذٌ فِي الْمَدْرَسَةِ الْإِبْتِدَائِيَّةِ، وَلَسْتُ تِلْمِيْذًا فِي الْمَدْرَسَةِ الثَّانَوِيَّةِ.",
             words: [
-              { ar: "أَنَا", tr: "anâ", id: "saya", type: "Dhomir" },
+              { ar: "أَنَا", tr: "anâ", id: "saya", type: "Dhomir Munfashil" },
               { ar: "تِلْمِيْذٌ", tr: "tilmîdzun", id: "seorang murid", type: "Khabar" },
-              { ar: "الْإِبْتِدَائِيَّةِ", tr: "al-ibtidâ'iyyah", id: "tingkat dasar (MI/SD)", type: "Sifat" },
+              { ar: "فِي", tr: "fî", id: "di / pada", type: "Harf Jar" },
+              { ar: "الْمَدْرَسَةِ", tr: "al-madrasati", id: "sekolah", type: "Isim Majrur" },
+              { ar: "الْإِبْتِدَائِيَّةِ", punct: "،", tr: "al-ibtidâ'iyyah", id: "tingkat dasar (MI/SD)", type: "Sifat / Na'at" },
               { ar: "وَلَسْتُ", tr: "wa-lastu", id: "dan saya bukan", type: "Laisa + Dhomir Ana" },
               { ar: "تِلْمِيْذًا", tr: "tilmîdzan", id: "murid (manshub fathatain)", type: "Khabar Laisa" },
-              { ar: "الثَّانَوِيَّةِ", tr: "ats-tsânawiyyah", id: "tingkat menengah (SMP/MTs)", type: "Sifat" }
+              { ar: "فِي", tr: "fî", id: "di / pada", type: "Harf Jar" },
+              { ar: "الْمَدْرَسَةِ", tr: "al-madrasati", id: "sekolah", type: "Isim Majrur" },
+              { ar: "الثَّانَوِيَّةِ", punct: ".", tr: "ats-tsânawiyyah", id: "tingkat menengah (SMP/MTs)", type: "Sifat / Na'at" }
             ]
           },
           {
             id: "b3-s6",
-            arabic: "وَأُخْتِي الصَّغِيْرَةُ لَيْسَتْ تِلْمِيْذَةً، هِيَ صَغِيْرَةٌ، عُمْرُهَا ثَلَاثُ سَنَوَاتٍ",
+            arabic: "وَأُخْتِي الصَّغِيْرَةُ لَيْسَتْ تِلْمِيْذَةً، هِيَ صَغِيْرَةٌ، عُمْرُهَا ثَلَاثُ سَنَوَاتٍ.",
             translation: "Dan adik perempuanku bukan seorang murid, dia masih kecil, umurnya baru tiga tahun.",
-            audioText: "وَأُخْتِي الصَّغِيْرَةُ لَيْسَتْ تِلْمِيْذَةً، هِيَ صَغِيْرَةٌ، عُمْرُهَا ثَلَاثُ سَنَوَاتٍ",
+            audioText: "وَأُخْتِي الصَّغِيْرَةُ لَيْسَتْ تِلْمِيْذَةً، هِيَ صَغِيْرَةٌ، عُمْرُهَا ثَلَاثُ سَنَوَاتٍ.",
             words: [
               { ar: "وَأُخْتِي", tr: "wa-ukhtî", id: "dan adik/saudari perempuanku", type: "Mubtada" },
+              { ar: "الصَّغِيْرَةُ", tr: "ash-shaghîratu", id: "yang kecil (adik)", type: "Na'at / Sifat" },
               { ar: "لَيْسَتْ", tr: "laysat", id: "dia (pr) bukan", type: "Laisa Muannats" },
-              { ar: "تِلْمِيْذَةً", tr: "tilmîdzatan", id: "seorang murid pr (manshub)", type: "Khabar Laisa" },
+              { ar: "تِلْمِيْذَةً", punct: "،", tr: "tilmîdzatan", id: "seorang murid pr (manshub)", type: "Khabar Laisa" },
+              { ar: "هِيَ", tr: "hiya", id: "dia (pr)", type: "Dhomir Munfashil" },
+              { ar: "صَغِيْرَةٌ", punct: "،", tr: "shaghîratun", id: "masih kecil", type: "Khabar" },
               { ar: "عُمْرُهَا", tr: "‘umruhâ", id: "umurnya", type: "Mubtada" },
-              { ar: "ثَلَاثُ سَنَوَاتٍ", tr: "tsalâtsu sanawâtin", id: "tiga tahun", type: "Adad Ma'dud" }
+              { ar: "ثَلَاثُ", tr: "tsalâtsu", id: "tiga", type: "Adad" },
+              { ar: "سَنَوَاتٍ", punct: ".", tr: "sanawâtin", id: "tahun", type: "Ma'dud Jamak Majrur" }
             ]
           }
         ]

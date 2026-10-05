@@ -561,17 +561,18 @@ body {
 
 /* Arabic Words Flow */
 .arabic-words-flow {
-  font-size: 24px;
+  font-size: 26px;
   line-height: 2.3;
   color: #0F172A;
   margin-bottom: 12px;
   text-align: right;
-  word-spacing: 4px;
+  word-spacing: 2px;
+  direction: rtl;
 }
 
 .word-chip {
   display: inline-block;
-  padding: 2px 7px;
+  padding: 1px 6px;
   border-radius: 8px;
   background: rgba(13, 148, 136, 0.05);
   border-bottom: 2px dashed rgba(13, 148, 136, 0.35);
@@ -585,6 +586,19 @@ body {
   color: var(--primary);
   border-bottom-color: var(--primary);
   transform: translateY(-2px);
+}
+
+.ar-punct {
+  font-family: var(--font-arabic);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-main);
+  display: inline-block;
+  margin-inline-start: 1px;
+  margin-inline-end: 8px;
+  user-select: none;
+  vertical-align: baseline;
+  line-height: 1;
 }
 
 /* Accordion Terjemahan Kalimat */

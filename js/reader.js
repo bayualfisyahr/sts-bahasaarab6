@@ -45,7 +45,8 @@ class StoryReader {
     if (modalSpeakBtn) {
       modalSpeakBtn.addEventListener("click", () => {
         if (this.modalWord) {
-          window.audioEngine.speakArabic(this.modalWord.ar);
+          const cleanWordAr = (this.modalWord.ar || "").replace(/[،؟!.؛:]/g, "").trim();
+          window.audioEngine.speakArabic(cleanWordAr);
         }
       });
     }
@@ -163,15 +164,15 @@ class StoryReader {
 
               <!-- Baris Kata Arab Berharakat -->
               <div class="arabic-words-flow font-arabic" dir="rtl">
-                ${sent.words.map((w, wIdx) => `
-                  <span class="word-chip" 
+                ${sent.words.map((w, wIdx) => {
+                  const cleanAr = (w.ar || "").replace(/[،؟!.؛:]/g, "").trim();
+                  const punct = w.punct || (w.ar && w.ar.match(/[،؟!.؛:]/) ? w.ar.match(/[،؟!.؛:]/)[0] : "");
+                  return `<span class="word-chip" 
                         data-chapter="${chapterIndex}" 
                         data-sentence="${sIdx}" 
                         data-word="${wIdx}"
-                        title="Klik untuk arti perkata">
-                    ${w.ar}
-                  </span>
-                `).join(" ")}
+                        title="Klik untuk arti perkata">${cleanAr}</span>${punct ? `<span class="ar-punct">${punct}</span>` : ""}`;
+                }).join(" ")}
               </div>
 
               <!-- Accordion Terjemahan Lengkap Kalimat -->
@@ -324,7 +325,8 @@ class StoryReader {
     const trEl = document.getElementById("modal-word-translit");
     const typeEl = document.getElementById("modal-word-type");
 
-    if (arEl) arEl.innerText = word.ar;
+    const cleanWordAr = (word.ar || "").replace(/[،؟!.؛:]/g, "").trim();
+    if (arEl) arEl.innerText = cleanWordAr;
     if (trEl) trEl.innerText = word.tr || "";
     if (typeEl) typeEl.innerText = word.type || "Kosakata";
 
@@ -348,7 +350,7 @@ class StoryReader {
     }
 
     // Putar suara kata secara otomatis saat dibuka
-    window.audioEngine.speakArabic(word.ar);
+    window.audioEngine.speakArabic(cleanWordAr);
   }
 
   closeWordModal() {
