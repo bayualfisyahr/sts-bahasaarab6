@@ -140,11 +140,6 @@ class StoryReader {
             ⏹️
           </button>
         </div>
-        <div class="audio-rate-picker">
-          <span class="rate-label">Kecepatan:</span>
-          <button class="rate-chip active" data-rate="0.85" onclick="window.storyReader.changeSpeed(0.85, this)">0.8x</button>
-          <button class="rate-chip" data-rate="1.0" onclick="window.storyReader.changeSpeed(1.0, this)">1.0x</button>
-        </div>
       </div>
 
       <!-- Teks Naskah Cerita -->

@@ -409,7 +409,7 @@ body {
   margin-bottom: 16px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 10px;
 }
 
@@ -872,24 +872,33 @@ body {
 .modal-details-grid {
   background: var(--surface-alt);
   border-radius: var(--radius-md);
-  padding: 12px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   margin: 14px 0 18px 0;
 }
 
+.detail-col {
+  width: 100%;
+  text-align: center;
+}
+
 .detail-col .detail-label {
-  font-size: 10.5px;
+  font-size: 11px;
   color: var(--text-muted);
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
 }
 
 .detail-col .detail-val {
-  font-size: 13.5px;
+  font-size: 17px;
   font-weight: 700;
-  color: var(--text-main);
+  color: var(--primary);
 }
 
 .btn-modal-speak {
